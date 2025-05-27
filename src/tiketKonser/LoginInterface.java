@@ -83,6 +83,8 @@ public class LoginInterface extends JFrame {
 		btnNewButton.setFont(new Font("Verdana", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new DashboardInterface().setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(640, 417, 218, 41);

@@ -8,10 +8,11 @@ public class Konser {
     private String lokasi;
     private double harga;
     private String jumlahKategori;
+    private String deskripsi;
     private int jumlahSeat;
 
     public Konser(int konserId, String namaKonser, String tanggalKonser, String waktuKonser,
-                  String lokasi, double harga, String jumlahKategori, int jumlahSeat) {
+                  String lokasi, double harga, String jumlahKategori, int jumlahSeat, String deskripsi) {
         this.konserId = konserId;
         this.namaKonser = namaKonser;
         this.tanggalKonser = tanggalKonser;
@@ -20,6 +21,7 @@ public class Konser {
         this.harga = harga;
         this.jumlahKategori = jumlahKategori;
         this.jumlahSeat = jumlahSeat;
+        this.deskripsi = deskripsi;
     }
 
     public void tampilkanAllKonser() {
