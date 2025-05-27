@@ -22,7 +22,7 @@ public class User {
 	}
 	
 	public void logout(String email, String password) {
-		System.out.
+		System.out.println("Logout");
 	}
 	
 	
