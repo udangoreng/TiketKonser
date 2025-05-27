@@ -1,4 +1,4 @@
-package TiketKonser;
+package tiketKonser;
 
 import java.awt.EventQueue;
 

@@ -1,4 +1,4 @@
-package TiketKonser;
+package tiketKonser;
 
 public class Admin extends User {
     private String hakAkses;
