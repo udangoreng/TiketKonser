@@ -1,4 +1,4 @@
-package TiketKonser;
+package tiketKonser;
 
 public class User {
 	public int userId;
