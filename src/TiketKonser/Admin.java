@@ -26,5 +26,3 @@ public class Admin extends User {
 
     // Getter dan Setter untuk hakAkses dapat ditambahkan jika perlu
 }
-
-}
