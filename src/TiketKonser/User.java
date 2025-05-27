@@ -12,4 +12,20 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public void register(String nama, String email, String password) {
+		System.out.println("nama" + "email" + "password");
+	}
+		
+	public void login(String email, String password) {
+		System.out.println("email" + "password");
+	}
+	
+	public void logout(String email, String password) {
+		System.out.
+	}
+	
+	
 }
+
+	
