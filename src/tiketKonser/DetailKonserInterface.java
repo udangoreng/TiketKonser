@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLayeredPane;
 
 public class DetailKonserInterface extends JFrame {
 
@@ -52,47 +53,58 @@ public class DetailKonserInterface extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel(); 
 		panel.setBackground(new Color(81, 20, 101));
 		panel.setBounds(0, 0, 255, 661);
-		panel.setSize(250,678);
+		panel.setSize(250, 678);
 		contentPane.add(panel);
 		panel.setLayout(null);
+
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, 250, 667);
+		panel.add(layeredPane);
+		layeredPane.setLayout(null);
+
+		// Label gambar di layer dasar
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (4).jpg"));
+		lblNewLabel_9.setBounds(0, 0, 250, 667);
+		layeredPane.add(lblNewLabel_9, Integer.valueOf(0));
 		
 		JLabel lblNewLabel = new JLabel("Hi, Username");
-		lblNewLabel.setBounds(44, 51, 149, 22);
-		panel.add(lblNewLabel);
+		lblNewLabel.setBounds(57, 61, 149, 22);
 		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 20));
 		lblNewLabel.setBackground(new Color(26, 21, 24));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		
+		layeredPane.add(lblNewLabel, Integer.valueOf(1)); // Tambah di layer atas gambar
+
 		JLabel lblNewLabel_1 = new JLabel("Lihat Konser");
+		lblNewLabel_1.setBounds(57, 170, 153, 31);
 		lblNewLabel_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBackground(new Color(26, 21, 24));
-		lblNewLabel_1.setBounds(44, 200, 153, 31);
-		panel.add(lblNewLabel_1);
-		
+		layeredPane.add(lblNewLabel_1, Integer.valueOf(1));
+
 		JLabel lblNewLabel_2 = new JLabel("Tiket Saya");
+		lblNewLabel_2.setBounds(57, 201, 138, 22);
 		lblNewLabel_2.setBackground(new Color(26, 21, 24));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(44, 242, 138, 22);
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Profil Saya");
-		lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_3.setBackground(new Color(26, 21, 24));
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(44, 275, 133, 31);
-		panel.add(lblNewLabel_3);
-		
+		layeredPane.add(lblNewLabel_2, Integer.valueOf(1));
+
 		JLabel lblNewLabel_4 = new JLabel("LogOut");
+		lblNewLabel_4.setBounds(57, 568, 79, 22);
 		lblNewLabel_4.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setBackground(new Color(26, 21, 24));
-		lblNewLabel_4.setBounds(44, 593, 79, 22);
-		panel.add(lblNewLabel_4);
+		layeredPane.add(lblNewLabel_4, Integer.valueOf(1));
+
+		JLabel lblNewLabel_3 = new JLabel("Profil Saya");
+		lblNewLabel_3.setBounds(57, 227, 133, 31);
+		lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+		lblNewLabel_3.setBackground(new Color(26, 21, 24));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		layeredPane.add(lblNewLabel_3, Integer.valueOf(1));
 		
 		JLabel lblNewLabel_5 = new JLabel("BRUNO MARS - JAKARTA INTERNASIONAL  STADIUM");
 		lblNewLabel_5.setFont(new Font("Poppins", Font.BOLD, 20));
