@@ -153,7 +153,7 @@ public class DetailKonserInterface extends JFrame {
 			}
 		});
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(1015, 515, 142, 23);
+		btnNewButton.setBounds(1011, 515, 142, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_7 = new JLabel("Kategori seat:");
