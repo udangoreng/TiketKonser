@@ -92,6 +92,7 @@ public class DashboardInterface extends JFrame {
 		panel.add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_3_3 = new JLabel("Logout");
+		lblNewLabel_3_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_3_3.setBounds(36, 470, 168, 40);
 		panel.add(lblNewLabel_3_3);
@@ -106,7 +107,7 @@ public class DashboardInterface extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Terbaru dari Kami :");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Poppins", Font.BOLD, 18));
-		lblNewLabel_2.setBounds(260, 45, 227, 39);
+		lblNewLabel_2.setBounds(291, 45, 227, 39);
 		contentPane.add(lblNewLabel_2);
 	}
 }
