@@ -105,7 +105,7 @@ public class DetailStageKonserInterface extends JFrame {
         
         JButton btnNewButton = new JButton("Pesan");
         btnNewButton.setFont(new Font("Poppins", Font.BOLD, 13));
-        btnNewButton.setBounds(1066, 515, 89, 30);
+        btnNewButton.setBounds(1065, 515, 89, 30);
         contentPane.add(btnNewButton);
         
         JTextArea textArea = new JTextArea();
