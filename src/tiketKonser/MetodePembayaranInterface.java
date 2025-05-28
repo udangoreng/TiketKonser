@@ -33,13 +33,13 @@ public class MetodePembayaranInterface extends JFrame {
         JLabel lblTitle = new JLabel("Metode Pembayaran");
         lblTitle.setFont(new Font("Poppins", Font.BOLD, 24));
         lblTitle.setForeground(Color.WHITE);
-        lblTitle.setBounds(672, 208, 400, 40);
+        lblTitle.setBounds(630, 208, 400, 40);
         contentPane.add(lblTitle);
 
         // ComboBox metode pembayaran
         JComboBox<String> comboBoxMetode = new JComboBox<>();
         comboBoxMetode.setFont(new Font("Poppins", Font.PLAIN, 14));
-        comboBoxMetode.setBounds(672, 300, 250, 30);
+        comboBoxMetode.setBounds(630, 301, 250, 30);
         comboBoxMetode.addItem("Pilih Metode Pembayaran");
         comboBoxMetode.addItem("Transfer Bank");
         comboBoxMetode.addItem("Kartu Debit");
@@ -50,14 +50,14 @@ public class MetodePembayaranInterface extends JFrame {
         JLabel lblBank = new JLabel("Pilih Bank:");
         lblBank.setFont(new Font("Poppins", Font.PLAIN, 14));
         lblBank.setForeground(Color.WHITE);
-        lblBank.setBounds(672, 337, 200, 25);
+        lblBank.setBounds(630, 337, 200, 25);
         lblBank.setVisible(false);
         contentPane.add(lblBank);
 
         // ComboBox bank (default: hidden)
         JComboBox<String> comboBoxBank = new JComboBox<>();
         comboBoxBank.setFont(new Font("Poppins", Font.PLAIN, 14));
-        comboBoxBank.setBounds(672, 357, 250, 30);
+        comboBoxBank.setBounds(630, 357, 250, 30);
         comboBoxBank.setVisible(false);
         contentPane.add(comboBoxBank);
 
@@ -86,7 +86,7 @@ public class MetodePembayaranInterface extends JFrame {
         btnKonfirmasi.setFont(new Font("Poppins", Font.BOLD, 14));
         btnKonfirmasi.setBackground(new Color(255, 255, 255));
         btnKonfirmasi.setForeground(new Color(0, 0, 0));
-        btnKonfirmasi.setBounds(672, 442, 250, 35);
+        btnKonfirmasi.setBounds(630, 435, 250, 35);
         contentPane.add(btnKonfirmasi);
         
         JPanel panel = new JPanel();
@@ -138,7 +138,7 @@ public class MetodePembayaranInterface extends JFrame {
         JLabel lblNewLabel_6 = new JLabel("Pilih Metode Pembayaran");
         lblNewLabel_6.setFont(new Font("Poppins", Font.PLAIN, 13));
         lblNewLabel_6.setForeground(new Color(255, 255, 255));
-        lblNewLabel_6.setBounds(672, 285, 173, 14);
+        lblNewLabel_6.setBounds(630, 288, 173, 14);
         contentPane.add(lblNewLabel_6);
 
         // Aksi tombol konfirmasi
