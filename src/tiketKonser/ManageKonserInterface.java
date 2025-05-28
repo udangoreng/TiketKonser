@@ -19,6 +19,7 @@ import javax.swing.JTable;
 
 import java.awt.Component;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 public class ManageKonserInterface extends JFrame {
 
@@ -118,6 +119,47 @@ public class ManageKonserInterface extends JFrame {
 		});
 		panel.add(lblNewLabel_4);
 		
+//		JPanel panel_1 = new JPanel();
+//		panel_1.setBounds(0, 0, 250, 678);
+//		panel.add(panel_1);
+//		panel_1.setLayout(null);
+//		panel_1.setBackground(new Color(81, 20, 101));
+//		
+//		JLabel lblNewLabel_5 = new JLabel("Hi, Username");
+//		lblNewLabel_5.setForeground(Color.WHITE);
+//		lblNewLabel_5.setFont(new Font("Poppins", Font.BOLD, 20));
+//		lblNewLabel_5.setBackground(new Color(26, 21, 24));
+//		lblNewLabel_5.setBounds(44, 51, 149, 22);
+//		panel_1.add(lblNewLabel_5);
+//		
+//		JLabel lblNewLabel_1_1 = new JLabel("Lihat Konser");
+//		lblNewLabel_1_1.setForeground(Color.WHITE);
+//		lblNewLabel_1_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+//		lblNewLabel_1_1.setBackground(new Color(26, 21, 24));
+//		lblNewLabel_1_1.setBounds(44, 200, 153, 31);
+//		panel_1.add(lblNewLabel_1_1);
+//		
+//		JLabel lblNewLabel_2_1 = new JLabel("Tiket Saya");
+//		lblNewLabel_2_1.setForeground(Color.WHITE);
+//		lblNewLabel_2_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+//		lblNewLabel_2_1.setBackground(new Color(26, 21, 24));
+//		lblNewLabel_2_1.setBounds(44, 242, 138, 22);
+//		panel_1.add(lblNewLabel_2_1);
+//		
+//		JLabel lblNewLabel_3_2 = new JLabel("Profil Saya");
+//		lblNewLabel_3_2.setForeground(Color.WHITE);
+//		lblNewLabel_3_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+//		lblNewLabel_3_2.setBackground(new Color(26, 21, 24));
+//		lblNewLabel_3_2.setBounds(44, 275, 133, 31);
+//		panel_1.add(lblNewLabel_3_2);
+//		
+//		JLabel lblNewLabel_4_1 = new JLabel("LogOut");
+//		lblNewLabel_4_1.setForeground(Color.WHITE);
+//		lblNewLabel_4_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+//		lblNewLabel_4_1.setBackground(new Color(26, 21, 24));
+//		lblNewLabel_4_1.setBounds(44, 593, 79, 22);
+//		panel_1.add(lblNewLabel_4_1);
+		
 		JLabel lblNewLabel_2 = new JLabel("Manage Konser");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Poppins", Font.BOLD, 18));
@@ -143,6 +185,14 @@ public class ManageKonserInterface extends JFrame {
         scrollPane.setBounds(302, 119, 661, 480);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         contentPane.add(scrollPane);
+        
+        JButton addButton = new JButton("Tambah Konser");
+        addButton.setForeground(new Color(255, 255, 255));
+        addButton.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        addButton.setBackground(new Color(80, 21, 101));
+        addButton.setBounds(775, 75, 155, 33);
+        addButton.setBorderPainted(false);
+        addButton.setFocusPainted(false);
+        contentPane.add(addButton);
 	}
-
 }
