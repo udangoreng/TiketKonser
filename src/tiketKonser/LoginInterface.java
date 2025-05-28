@@ -96,6 +96,8 @@ public class LoginInterface extends JFrame {
 		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new DashboardInterface().setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(731, 418, 218, 41);
