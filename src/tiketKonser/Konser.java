@@ -1,26 +1,24 @@
 package tiketKonser;
 
+import java.util.ArrayList;
+
 public class Konser {
     private int konserId;
     private String namaKonser;
     private String tanggalKonser;
     private String waktuKonser;
     private String lokasi;
-    private double harga;
-    private String jumlahKategori;
+    private ArrayList<Kategori> kategori;
     private String deskripsi;
-    private int jumlahSeat;
 
     public Konser(int konserId, String namaKonser, String tanggalKonser, String waktuKonser,
-                  String lokasi, double harga, String jumlahKategori, int jumlahSeat, String deskripsi) {
+                  String lokasi, String deskripsi) {
         this.konserId = konserId;
         this.namaKonser = namaKonser;
         this.tanggalKonser = tanggalKonser;
         this.waktuKonser = waktuKonser;
         this.lokasi = lokasi;
-        this.harga = harga;
-        this.jumlahKategori = jumlahKategori;
-        this.jumlahSeat = jumlahSeat;
+        this.kategori = new ArrayList<>();
         this.deskripsi = deskripsi;
     }
 
@@ -73,27 +71,19 @@ public class Konser {
         this.lokasi = lokasi;
     }
 
-    public double getHarga() {
-        return harga;
+    public ArrayList<Kategori> getKategoriList() {
+        return kategori;
     }
+    
+    public void setKategori (ArrayList<Kategori> kategori) {
+        this.kategori = kategori;
+   }
 
-    public void setHarga(double harga) {
-        this.harga = harga;
-    }
+	public String getDeskripsi() {
+		return deskripsi;
+	}
 
-    public String getJumlahKategori() {
-        return jumlahKategori;
-    }
-
-    public void setJumlahKategori(String jumlahKategori) {
-        this.jumlahKategori = jumlahKategori;
-    }
-
-    public int getJumlahSeat() {
-        return jumlahSeat;
-    }
-
-    public void setJumlahSeat(int jumlahSeat) {
-        this.jumlahSeat = jumlahSeat;
-    }
+	public void setDeskripsi(String deskripsi) {
+		this.deskripsi = deskripsi;
+	}
 }
