@@ -2,7 +2,8 @@ package tiketKonser;
 
 import java.awt.EventQueue;
 import java.awt.Image;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -76,7 +77,7 @@ public class DetailStageKonserInterface extends JFrame {
 		 // ComboBox metode pembayaran
         JComboBox<String> comboBoxMetode = new JComboBox<>();
         comboBoxMetode.setFont(new Font("Poppins", Font.PLAIN, 14));
-        comboBoxMetode.setBounds(790, 515, 250, 30);
+        comboBoxMetode.setBounds(598, 515, 250, 30);
         comboBoxMetode.addItem("Kategori - Harga");
         comboBoxMetode.addItem("Gold VIP Package - Rp 7.650.000");
         comboBoxMetode.addItem("Cat 1 - Rp 6.000.000 ");
@@ -94,7 +95,7 @@ public class DetailStageKonserInterface extends JFrame {
         JLabel lblNewLabel_3 = new JLabel("Pilih Kategori Seat");
         lblNewLabel_3.setFont(new Font("Poppins", Font.PLAIN, 13));
         lblNewLabel_3.setForeground(new Color(255, 255, 255));
-        lblNewLabel_3.setBounds(790, 502, 167, 14);
+        lblNewLabel_3.setBounds(598, 502, 167, 14);
         contentPane.add(lblNewLabel_3);
         
         JLabel lblNewLabel_4 = new JLabel("Deskripsi:");
@@ -105,7 +106,13 @@ public class DetailStageKonserInterface extends JFrame {
         
         JButton btnNewButton = new JButton("Pesan");
         btnNewButton.setFont(new Font("Poppins", Font.BOLD, 13));
-        btnNewButton.setBounds(1065, 515, 89, 30);
+        btnNewButton.setBounds(873, 515, 89, 30);
+        btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new MetodePembayaranInterface().setVisible(true);
+			}
+		});
         contentPane.add(btnNewButton);
         
         JTextArea textArea = new JTextArea();
@@ -113,7 +120,7 @@ public class DetailStageKonserInterface extends JFrame {
         textArea.setBackground(new Color(26, 21, 24)); // Warna latar belakang
         textArea.setForeground(Color.WHITE); // Warna teks
         textArea.setFont(new Font("Poppins", Font.PLAIN, 13)); // Font agar rapi dan sejajar
-        textArea.setBounds(780, 69, 387, 418);
+        textArea.setBounds(588, 69, 387, 418);
 
         // Isi teks deskripsi tiket
         textArea.setText(

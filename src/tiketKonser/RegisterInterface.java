@@ -1,6 +1,9 @@
 package tiketKonser;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 
 public class RegisterInterface extends JFrame {
@@ -109,7 +112,15 @@ public class RegisterInterface extends JFrame {
 		JLabel lblLogin = new JLabel("Sudah punya akun? Login");
 		lblLogin.setForeground(Color.LIGHT_GRAY);
 		lblLogin.setFont(new Font("SansSerif", Font.PLAIN, 14)); // Font diperbesar
-		lblLogin.setBounds(580, 490, 250, 20); // Disesuaikan
+		lblLogin.setBounds(580, 490, 250, 20);
+		lblLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblLogin.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		contentPane.add(lblLogin);
 	}
 }

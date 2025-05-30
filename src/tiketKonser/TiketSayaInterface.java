@@ -2,8 +2,11 @@ package tiketKonser;
 
 import java.awt.EventQueue;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -57,12 +60,28 @@ public class TiketSayaInterface extends JFrame {
         lblHiUsername_1.setForeground(Color.WHITE);
         lblHiUsername_1.setFont(new Font("Poppins", Font.BOLD, 20));
         lblHiUsername_1.setBounds(24, 55, 146, 30);
+        lblHiUsername_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblHiUsername_1.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DashboardInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel.add(lblHiUsername_1);
 
         JLabel lblHiUsername = new JLabel(" Lihat Konser");
         lblHiUsername.setForeground(Color.WHITE);
         lblHiUsername.setFont(new Font("Poppins", Font.BOLD, 14));
         lblHiUsername.setBounds(18, 149, 101, 30);
+        lblHiUsername.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblHiUsername.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DaftarKonserInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel.add(lblHiUsername);
 
         JLabel lblTiketSaya = new JLabel("Tiket Saya");
@@ -75,12 +94,28 @@ public class TiketSayaInterface extends JFrame {
         lblProfilSaya.setForeground(Color.WHITE);
         lblProfilSaya.setFont(new Font("Poppins", Font.BOLD, 14));
         lblProfilSaya.setBounds(24, 232, 131, 30);
+        lblProfilSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblProfilSaya.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new ProfilInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel.add(lblProfilSaya);
 
         JLabel lblLogout = new JLabel("Logout");
         lblLogout.setForeground(Color.WHITE);
         lblLogout.setFont(new Font("Poppins", Font.BOLD, 14));
         lblLogout.setBounds(24, 586, 131, 30);
+        lblLogout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblLogout.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel.add(lblLogout);
 
         JLabel lblTicketActive = new JLabel("Ticket Active");

@@ -1,6 +1,8 @@
 package tiketKonser;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -55,18 +57,42 @@ public class DaftarKonserInterface extends JFrame {
 		lblTiketSaya.setForeground(Color.WHITE);
 		lblTiketSaya.setFont(new Font("Poppins", Font.BOLD, 14));
 		lblTiketSaya.setBounds(24, 191, 131, 30);
+		lblTiketSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblTiketSaya.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new TiketSayaInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblTiketSaya);
 
 		JLabel lblProfilSaya = new JLabel("Profil Saya");
 		lblProfilSaya.setForeground(Color.WHITE);
 		lblProfilSaya.setFont(new Font("Poppins", Font.BOLD, 14));
 		lblProfilSaya.setBounds(24, 232, 131, 30);
+		lblProfilSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblProfilSaya.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new ProfilInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblProfilSaya);
 
 		JLabel lblLogout = new JLabel("Logout");
 		lblLogout.setForeground(Color.WHITE);
 		lblLogout.setFont(new Font("Poppins", Font.BOLD, 14));
 		lblLogout.setBounds(24, 586, 131, 30);
+		lblLogout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblLogout.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblLogout);
 
 		// Judul konser
@@ -135,7 +161,8 @@ public class DaftarKonserInterface extends JFrame {
 			// Contoh aksi ketika tombol diklik
 			int index = i;
 			detailButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(this, "Detail konser: " + artistNames[index]);
+//				JOptionPane.showMessageDialog(this, "Detail konser: " + artistNames[index]);
+				new DetailKonserInterface().setVisible(true);
 			});
 
 			itemPanel.add(Box.createVerticalStrut(5));

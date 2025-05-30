@@ -1,6 +1,9 @@
 package tiketKonser;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import java.io.IOException;
@@ -41,19 +44,43 @@ public class ProfilInterface extends JFrame {
         JLabel lblHiUsername = new JLabel("Hi, Username");
         lblHiUsername.setForeground(Color.WHITE);
         lblHiUsername.setFont(new Font("Poppins", Font.BOLD, 20));
-        lblHiUsername.setBounds(24, 55, 200, 30); // Disesuaikan
+        lblHiUsername.setBounds(24, 55, 200, 30);
+        lblHiUsername.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblHiUsername.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DashboardInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel_1.add(lblHiUsername);
 
         JLabel lblLihatKonser = new JLabel("Lihat Konser");
         lblLihatKonser.setForeground(Color.WHITE);
         lblLihatKonser.setFont(new Font("Poppins", Font.BOLD, 14));
         lblLihatKonser.setBounds(24, 120, 150, 30);
+        lblLihatKonser.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblLihatKonser.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DaftarKonserInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel_1.add(lblLihatKonser);
 
         JLabel lblTiketSaya = new JLabel("Tiket Saya");
         lblTiketSaya.setForeground(Color.WHITE);
         lblTiketSaya.setFont(new Font("Poppins", Font.BOLD, 14));
         lblTiketSaya.setBounds(24, 170, 150, 30);
+        lblTiketSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblTiketSaya.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new TiketSayaInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel_1.add(lblTiketSaya);
 
         JLabel lblProfilSaya = new JLabel("Profil Saya");
@@ -66,6 +93,14 @@ public class ProfilInterface extends JFrame {
         lblLogout.setForeground(Color.WHITE);
         lblLogout.setFont(new Font("Poppins", Font.BOLD, 14));
         lblLogout.setBounds(24, 550, 150, 30);
+        lblLogout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblLogout.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
         panel_1.add(lblLogout);
 
         JLabel lblTitle = new JLabel("Profil Saya");
