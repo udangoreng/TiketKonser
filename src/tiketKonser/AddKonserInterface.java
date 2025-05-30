@@ -7,11 +7,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
@@ -143,8 +148,19 @@ public class AddKonserInterface extends JFrame {
 		lblKategoriKonser.setBounds(60, 528, 132, 22);
 		panel.add(lblKategoriKonser);
 		
-		JButton btnNewButton = new JButton("Simpan");
-		btnNewButton.setBounds(229, 559, 118, 28);
-		panel.add(btnNewButton);
+		JButton btnSimpan = new JButton("Simpan");
+		btnSimpan.setBounds(229, 559, 118, 28);
+		btnSimpan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String value = textField_4.getText();
+	                new AddCategory(value);
+	                dispose();
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(null, "Please enter a valid integer.");
+	            }
+	        }
+	    });
+		panel.add(btnSimpan);
 	}
 }
