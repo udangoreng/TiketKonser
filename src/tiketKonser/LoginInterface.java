@@ -59,43 +59,40 @@ public class LoginInterface extends JFrame {
 		contentPane.setLayout(null);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBackground(Color.DARK_GRAY);
-		passwordField.setBounds(588, 276, 400, 40);
+		passwordField.setBounds(731, 344, 218, 27);
 		contentPane.add(passwordField);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBackground(Color.DARK_GRAY);
-		textPane.setBounds(588, 180, 400, 40);
+		textPane.setBounds(731, 293, 218, 27);
 		textPane.setBorder(BorderFactory.createLineBorder(getForeground()));
 		contentPane.add(textPane);
 		
 		JLabel lblNewLabel = new JLabel("Email :");
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 18));
-		lblNewLabel.setBounds(589, 149, 129, 27);
+		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 15));
+		lblNewLabel.setBounds(664, 293, 129, 27);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password :");
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(588, 244, 118, 27);
+		lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(632, 343, 118, 27);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("LogIn");
 		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Poppins", Font.BOLD, 30));
-		lblNewLabel_2.setBounds(720, 47, 136, 53);
+		lblNewLabel_2.setFont(new Font("Poppins", Font.BOLD, 20));
+		lblNewLabel_2.setBounds(794, 227, 136, 53);
 		contentPane.add(lblNewLabel_2);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Remember me");
 		chckbxNewCheckBox.setBackground(new Color(26, 21, 24));
 		chckbxNewCheckBox.setForeground(new Color(255, 255, 255));
-		chckbxNewCheckBox.setFont(new Font("Poppins", Font.PLAIN, 15));
-		chckbxNewCheckBox.setBounds(588, 348, 400, 40);
+		chckbxNewCheckBox.setFont(new Font("Poppins", Font.PLAIN, 11));
+		chckbxNewCheckBox.setBounds(730, 399, 219, 27);
 		contentPane.add(chckbxNewCheckBox);
 		
 		JButton btnNewButton = new JButton("LogIn");
-		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,26 +100,25 @@ public class LoginInterface extends JFrame {
 				new DashboardInterface().setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(587, 395, 400, 40);
-		btnNewButton.setBackground(new Color(81, 20, 101));
+		btnNewButton.setBounds(731, 418, 218, 41);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_3 = new JLabel("forgot password");
 		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("Poppins", Font.PLAIN, 15));
-		lblNewLabel_3.setBounds(859, 327, 173, 14);
+		lblNewLabel_3.setFont(new Font("Poppins", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(851, 377, 173, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Don't have account?");
 		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("Poppins", Font.PLAIN, 15));
-		lblNewLabel_4.setBounds(588, 446, 164, 14);
+		lblNewLabel_4.setFont(new Font("Poppins", Font.PLAIN, 12));
+		lblNewLabel_4.setBounds(741, 469, 136, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("SignUp");
 		lblNewLabel_5.setForeground(new Color(0, 128, 255));
-		lblNewLabel_5.setFont(new Font("Poppins", Font.PLAIN, 15));
-		lblNewLabel_5.setBounds(762, 440, 95, 27);
+		lblNewLabel_5.setFont(new Font("Poppins", Font.PLAIN, 12));
+		lblNewLabel_5.setBounds(870, 470, 49, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		JPanel panel = new JPanel();
@@ -144,27 +140,27 @@ public class LoginInterface extends JFrame {
 		layeredPane.add(lblNewLabel_10, Integer.valueOf(0));
 
 		JLabel lblNewLabel_7 = new JLabel("WELCOME TO ");
-		lblNewLabel_7.setBounds(34, 30, 400, 50); 
-		lblNewLabel_7.setFont(new Font("Poppins", Font.BOLD, 35));
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
+		lblNewLabel_7.setBounds(30, 88, 400, 50); 
+		lblNewLabel_7.setFont(new Font("Poppins", Font.BOLD, 30));
+		lblNewLabel_7.setForeground(new Color(0, 0, 0));
 		layeredPane.add(lblNewLabel_7, Integer.valueOf(1));
 
 		JLabel lblNewLabel_6 = new JLabel("StagePass");
-		lblNewLabel_6.setBounds(227, 69, 400, 44);
-		lblNewLabel_6.setFont(new Font("Poppins", Font.BOLD | Font.ITALIC, 35));
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
+		lblNewLabel_6.setBounds(202, 121, 400, 44);
+		lblNewLabel_6.setFont(new Font("Poppins", Font.BOLD | Font.ITALIC, 30));
+		lblNewLabel_6.setForeground(new Color(0, 0, 0));
 		layeredPane.add(lblNewLabel_6, Integer.valueOf(1));
 
 		JLabel lblNewLabel_8 = new JLabel("Dari Layar ke Panggung");
-		lblNewLabel_8.setBounds(45, 585, 400, 26);
+		lblNewLabel_8.setBounds(30, 206, 400, 26);
 		lblNewLabel_8.setFont(new Font("Poppins", Font.BOLD, 20));
-		lblNewLabel_8.setForeground(new Color(255, 255, 255));
+		lblNewLabel_8.setForeground(new Color(0, 0, 0));
 		layeredPane.add(lblNewLabel_8, Integer.valueOf(1));
 
 		JLabel lblNewLabel_9 = new JLabel("Semua Dimulai di Stagepass");
-		lblNewLabel_9.setBounds(45, 609, 400, 26);
+		lblNewLabel_9.setBounds(30, 243, 400, 26);
 		lblNewLabel_9.setFont(new Font("Poppins", Font.BOLD, 20));
-		lblNewLabel_9.setForeground(new Color(255, 255, 255));
+		lblNewLabel_9.setForeground(new Color(0, 0, 0));
 		layeredPane.add(lblNewLabel_9, Integer.valueOf(1));
 	}
 }
