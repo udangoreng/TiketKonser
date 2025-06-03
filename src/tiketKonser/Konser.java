@@ -25,6 +25,11 @@ public class Konser {
         this.deskripsi = deskripsi;
     }
     
+    static {
+    	Konser.addKonser("Rock Concert", "2025-07-01", "20:00", "Stadium XYZ", "sdfdghgfd");
+    	Konser.addKonser("Jazz Night", "2025-07-15", "19:00", "Theater ABC", "asdfgjfthdgfds");
+    }
+    
     public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi) {
         Konser konser = new Konser(nextId++, nama, tanggal, waktu, lokasi, deskripsi);
         konserAll.add(konser);
@@ -33,6 +38,13 @@ public class Konser {
 
     public static Konser getLastAddedKonser() {
         return lastAddedKonser;
+    }
+    
+    public static ArrayList<Konser> getAllKonser() {
+    	for (Konser konser : konserAll) {
+            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
+        }
+        return konserAll;
     }
 
     public void tampilkanAllKonser() {
@@ -76,11 +88,11 @@ public class Konser {
         this.waktuKonser = waktuKonser;
     }
 
-    public String getLokasi() {
+    public String getLokasiKonser() {
         return lokasi;
     }
 
-    public void setLokasi(String lokasi) {
+    public void setLokasiKonser(String lokasi) {
         this.lokasi = lokasi;
     }
 
@@ -99,11 +111,4 @@ public class Konser {
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
 	}
-	
-    public static ArrayList<Konser> getAllKonser() {
-    	for (Konser konser : konserAll) {
-            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
-        }
-        return konserAll;
-    }
 }

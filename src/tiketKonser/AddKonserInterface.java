@@ -108,13 +108,13 @@ public class AddKonserInterface extends JFrame {
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(60, 157, 132, 30);
+		textField_2.setBounds(60, 157, 151, 30);
 		panel.add(textField_2);
 		
 		lblNewLabel_1_2 = new JLabel("Tanggal (DD:MM:YY) :");
 		lblNewLabel_1_2.setForeground(Color.WHITE);
 		lblNewLabel_1_2.setFont(new Font("Poppins", Font.PLAIN, 14));
-		lblNewLabel_1_2.setBounds(60, 124, 132, 22);
+		lblNewLabel_1_2.setBounds(60, 124, 145, 22);
 		panel.add(lblNewLabel_1_2);
 		
 		textArea = new JTextArea();
@@ -165,6 +165,7 @@ public class AddKonserInterface extends JFrame {
 	                }
 	                
 	                Konser.addKonser(nama, tanggal, waktu, lokasi, deskripsi);
+	                Konser.getAllKonser();
 					String value = textField_4.getText();
 	                new AddCategory(value);
 	                dispose();

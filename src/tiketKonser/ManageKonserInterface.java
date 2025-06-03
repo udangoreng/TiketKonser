@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,6 +28,7 @@ public class ManageKonserInterface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -43,6 +45,23 @@ public class ManageKonserInterface extends JFrame {
 				}
 			}
 		});
+	}
+	
+	private void refreshTable() {
+	    DefaultTableModel model = (DefaultTableModel) table.getModel();
+	    model.setRowCount(0); // Clear existing rows
+
+	    int no = 1;
+	    for (Konser k : Konser.getAllKonser()) {
+	        model.addRow(new Object[] {
+	            no++,
+	            k.getKonserId(),
+	            k.getNamaKonser(),
+	            k.getTanggalKonser(),
+	            k.getWaktuKonser(),
+	            k.getLokasiKonser()
+	        });
+	    }
 	}
 
 	/**
@@ -127,12 +146,24 @@ public class ManageKonserInterface extends JFrame {
 		lblNewLabel_2.setBounds(302, 38, 227, 39);
 		contentPane.add(lblNewLabel_2);
 		
-		String[] columnNames = {"No", "Konser ID", "Konser", "Tanggal/Waktu", "Lokasi", "Aksi"};
+		String[] columnNames = {"No", "Konser ID", "Konser", "Tanggal", "Waktu", "Lokasi"};
+
 		DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-		model.addRow(new Object[]{"1", "Alice", "30", "Engineering"});
-        model.addRow(new Object[]{"2", "Bob", "25", "Design"});
-        model.addRow(new Object[]{"3", "Charlie", "28", "HR"});
-        JTable table = new JTable(model);
+
+		ArrayList<Konser> konserList = Konser.getAllKonser();
+		int no = 1;
+		for (Konser k : konserList) {
+		    model.addRow(new Object[] {
+		        no++,
+		        k.getKonserId(),
+		        k.getNamaKonser(),
+		        k.getTanggalKonser(),
+		        k.getWaktuKonser(),
+		        k.getLokasiKonser()
+		    });
+		}
+//		
+        table = new JTable(model);
 		table.setFont(new Font("Poppins", Font.PLAIN, 12));
 		table.setForeground(new Color(255, 255, 255));
 		table.setBackground(new Color(26, 21, 24));
@@ -160,5 +191,15 @@ public class ManageKonserInterface extends JFrame {
 			}
 		});
         contentPane.add(addButton);
+        
+        JButton btnRefreshTabel = new JButton("Refresh Tabel");
+        btnRefreshTabel.setForeground(Color.WHITE);
+        btnRefreshTabel.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        btnRefreshTabel.setFocusPainted(false);
+        btnRefreshTabel.setBorderPainted(false);
+        btnRefreshTabel.setBackground(new Color(80, 21, 101));
+        btnRefreshTabel.setBounds(643, 75, 155, 33);
+        btnRefreshTabel.addActionListener(e -> refreshTable());
+        contentPane.add(btnRefreshTabel);
 	}
 }
