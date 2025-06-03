@@ -11,6 +11,8 @@ import javax.swing.table.JTableHeader;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,6 +21,7 @@ import javax.swing.JTable;
 
 import java.awt.Component;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 public class ManageKonserInterface extends JFrame {
 
@@ -143,6 +146,19 @@ public class ManageKonserInterface extends JFrame {
         scrollPane.setBounds(302, 119, 661, 480);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         contentPane.add(scrollPane);
+        
+        JButton addButton = new JButton("Tambah Konser");
+        addButton.setForeground(new Color(255, 255, 255));
+        addButton.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        addButton.setBackground(new Color(80, 21, 101));
+        addButton.setBounds(808, 75, 155, 33);
+        addButton.setBorderPainted(false);
+        addButton.setFocusPainted(false);
+        addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AddKonserInterface().setVisible(true);
+			}
+		});
+        contentPane.add(addButton);
 	}
-
 }

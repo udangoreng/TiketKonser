@@ -25,4 +25,14 @@ public class Admin extends User {
     }
 
     // Getter dan Setter untuk hakAkses dapat ditambahkan jika perlu
+    
+    public void setHakAkses(String previlege) {
+    	this.hakAkses = previlege;
+    }
+    
+    public String getHakAkses() {
+    	return hakAkses;
+    }
+    
+    
 }

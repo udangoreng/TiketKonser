@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import java.awt.Button;
@@ -77,18 +79,42 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(36, 134, 168, 40);
+		lblNewLabel_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DaftarKonserInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Tiket Saya");
 		lblNewLabel_3_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_3_1.setBounds(36, 175, 168, 40);
+		lblNewLabel_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new TiketSayaInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Profil Saya");
 		lblNewLabel_3_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_3_2.setBounds(36, 215, 168, 40);
+		lblNewLabel_3_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3_2.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new ProfilInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		panel.add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_3_3 = new JLabel("Logout");
@@ -96,11 +122,12 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_3_3.setBounds(36, 470, 168, 40);
 		panel.add(lblNewLabel_3_3);
+		lblNewLabel_3_3.setCursor(new Cursor(Cursor.HAND_CURSOR));		
 		lblNewLabel_3_3.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
 		    	dispose();
-		        new LoginInterface().setVisible(true);
 		    }
 		});
 		

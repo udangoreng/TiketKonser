@@ -8,12 +8,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 
@@ -76,27 +79,83 @@ public class DetailKonserInterface extends JFrame {
 		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 20));
 		lblNewLabel.setBackground(new Color(26, 21, 24));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
+<<<<<<< HEAD
 		layeredPane.add(lblNewLabel, Integer.valueOf(1)); // Tambah di layer atas gambar
 
+=======
+		lblNewLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DashboardInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
+		
+>>>>>>> 927418d2011ea72cd08242837479ea8409559571
 		JLabel lblNewLabel_1 = new JLabel("Lihat Konser");
 		lblNewLabel_1.setBounds(57, 170, 153, 31);
 		lblNewLabel_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBackground(new Color(26, 21, 24));
+<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_1, Integer.valueOf(1));
 
+=======
+		lblNewLabel_1.setBounds(44, 200, 153, 31);
+		lblNewLabel_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new DaftarKonserInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
+		panel.add(lblNewLabel_1);
+		
+>>>>>>> 927418d2011ea72cd08242837479ea8409559571
 		JLabel lblNewLabel_2 = new JLabel("Tiket Saya");
 		lblNewLabel_2.setBounds(57, 201, 138, 22);
 		lblNewLabel_2.setBackground(new Color(26, 21, 24));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_2, Integer.valueOf(1));
 
+=======
+		lblNewLabel_2.setBounds(44, 242, 138, 22);
+		lblNewLabel_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new TiketSayaInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Profil Saya");
+		lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+		lblNewLabel_3.setBackground(new Color(26, 21, 24));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setBounds(44, 275, 133, 31);
+		lblNewLabel_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new ProfilInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
+		panel.add(lblNewLabel_3);
+		
+>>>>>>> 927418d2011ea72cd08242837479ea8409559571
 		JLabel lblNewLabel_4 = new JLabel("LogOut");
 		lblNewLabel_4.setBounds(57, 568, 79, 22);
 		lblNewLabel_4.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setBackground(new Color(26, 21, 24));
+<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_4, Integer.valueOf(1));
 
 		JLabel lblNewLabel_3 = new JLabel("Profil Saya");
@@ -105,6 +164,18 @@ public class DetailKonserInterface extends JFrame {
 		lblNewLabel_3.setBackground(new Color(26, 21, 24));
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		layeredPane.add(lblNewLabel_3, Integer.valueOf(1));
+=======
+		lblNewLabel_4.setBounds(44, 593, 79, 22);
+		lblNewLabel_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new LoginInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
+		panel.add(lblNewLabel_4);
+>>>>>>> 927418d2011ea72cd08242837479ea8409559571
 		
 		JLabel lblNewLabel_5 = new JLabel("BRUNO MARS - JAKARTA INTERNASIONAL  STADIUM");
 		lblNewLabel_5.setFont(new Font("Poppins", Font.BOLD, 20));
@@ -150,6 +221,7 @@ public class DetailKonserInterface extends JFrame {
 		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new DetailStageKonserInterface().setVisible(true);
 			}
 		});
 		btnNewButton.setForeground(new Color(0, 0, 0));
