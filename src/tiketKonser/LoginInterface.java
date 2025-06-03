@@ -129,7 +129,7 @@ public class LoginInterface extends JFrame {
 
 		JLabel lblNewLabel_10 = new JLabel();
 		lblNewLabel_10.setBounds(0, 0, 510, 704);
-		lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (1).jpg"));
+		lblNewLabel_10.setIcon(new ImageIcon("./img/mainLogin.jpg"));
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 510, 704);

@@ -146,7 +146,7 @@ public class DetailKonserInterface extends JFrame {
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setBounds(271, 88, 350, 450);
 
-		ImageIcon icon = new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download.jpg");
+		ImageIcon icon = new ImageIcon("./img/brunoKonser.jpg");
 		Image img = icon.getImage();
 		Image newImg = img.getScaledInstance(350, 450, Image.SCALE_SMOOTH);
 		lblNewLabel_6.setIcon(new ImageIcon(newImg));
