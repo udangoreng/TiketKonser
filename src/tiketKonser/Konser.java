@@ -8,9 +8,10 @@ public class Konser {
     private String tanggalKonser;
     private String waktuKonser;
     private String lokasi;
-    private ArrayList<Kategori> kategori;
     private String deskripsi;
+    private ArrayList<Kategori> kategori;
     private static ArrayList<Konser> konserAll = new ArrayList<>();
+    private static Konser lastAddedKonser = null;
     private static int nextId = 1;
 
     public Konser(int konserId, String namaKonser, String tanggalKonser, String waktuKonser,
@@ -27,6 +28,11 @@ public class Konser {
     public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi) {
         Konser konser = new Konser(nextId++, nama, tanggal, waktu, lokasi, deskripsi);
         konserAll.add(konser);
+        lastAddedKonser = konser;
+    }
+
+    public static Konser getLastAddedKonser() {
+        return lastAddedKonser;
     }
 
     public void tampilkanAllKonser() {
@@ -95,6 +101,9 @@ public class Konser {
 	}
 	
     public static ArrayList<Konser> getAllKonser() {
+    	for (Konser konser : konserAll) {
+            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
+        }
         return konserAll;
     }
 }

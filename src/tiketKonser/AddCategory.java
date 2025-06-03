@@ -10,7 +10,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -19,6 +25,9 @@ public class AddCategory extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private int count;
+	private ArrayList<JTextField> nameFields = new ArrayList<>();
+	private ArrayList<JTextField> priceFields = new ArrayList<>();
+	private ArrayList<JTextField> seatFields = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -66,6 +75,7 @@ public class AddCategory extends JFrame {
 
             JTextField nameField = new JTextField();
             nameField.setBounds(20, yOffset + 25, 340, 27);
+            nameFields.add(nameField);
             panel.add(nameField);
 
             JLabel priceLabel = new JLabel("Harga:");
@@ -76,6 +86,7 @@ public class AddCategory extends JFrame {
 
             JTextField priceField = new JTextField();
             priceField.setBounds(20, yOffset + 85, 140, 27);
+            priceFields.add(priceField);            
             panel.add(priceField);
 
             JLabel seatLabel = new JLabel("Jumlah Seat:");
@@ -86,12 +97,49 @@ public class AddCategory extends JFrame {
 
             JTextField seatField = new JTextField();
             seatField.setBounds(220, yOffset + 85, 140, 27);
+            seatFields.add(priceField);
             panel.add(seatField);
         }
 
         // Save Button
         JButton saveButton = new JButton("Simpan");
         saveButton.setBounds(275, baseY + count * 150 - 30, 90, 30);
+        saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Kategori> kategoriList = new ArrayList<>();
+
+				for (int i = 0; i < count; i++) {
+					String nama = nameFields.get(i).getText();
+					String hargaStr = priceFields.get(i).getText();
+					String jumlahStr = seatFields.get(i).getText();
+
+					if (nama.isEmpty() || hargaStr.isEmpty() || jumlahStr.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Semua field kategori ke-" + (i + 1) + " harus diisi!");
+						return;
+					}
+
+					try {
+						double harga = Double.parseDouble(hargaStr);
+						int jumlah = Integer.parseInt(jumlahStr);
+
+						kategoriList.add(new Kategori(nama, jumlah, harga));
+					} catch (NumberFormatException ex) {
+						JOptionPane.showMessageDialog(null, "Harga dan Jumlah harus berupa angka! (Kategori ke-" + (i + 1) + ")");
+						return;
+					}
+				}
+
+				Konser konser = Konser.getLastAddedKonser();
+				if (konser != null) {
+					konser.setKategori(kategoriList);
+					JOptionPane.showMessageDialog(null, "Kategori berhasil ditambahkan ke konser.");
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Gagal menemukan konser yang baru dibuat.");
+				}
+			}
+		});
         panel.add(saveButton);
     }
 
