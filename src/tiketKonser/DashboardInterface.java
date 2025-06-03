@@ -92,9 +92,9 @@ public class DashboardInterface extends JFrame {
 		JLabel lblNewLabel_3_1 = new JLabel("Tiket Saya");
 		lblNewLabel_3_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBounds(36, 175, 168, 40);
-		lblNewLabel_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+		lblNewLabel_3_1.setBounds(36, 192, 168, 40);
+		lblNewLabel_3_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3_1.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
 		    	new TiketSayaInterface().setVisible(true);
@@ -106,7 +106,7 @@ public class DashboardInterface extends JFrame {
 		JLabel lblNewLabel_3_2 = new JLabel("Profil Saya");
 		lblNewLabel_3_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_3_2.setBounds(36, 215, 168, 40);
+		lblNewLabel_3_2.setBounds(36, 254, 168, 40);
 		lblNewLabel_3_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_3_2.addMouseListener(new MouseAdapter() {
 		    @Override

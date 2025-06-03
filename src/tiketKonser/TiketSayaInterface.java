@@ -126,8 +126,8 @@ public class TiketSayaInterface extends JFrame {
 
         // Gambar pertama
         try {
-            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1um6Pi4AMmo5OZdMCwVJ2Z9ApP6Pix7NL");
-            ImageIcon icon = new ImageIcon(ImageIO.read(imageUrl));
+//            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1um6Pi4AMmo5OZdMCwVJ2Z9ApP6Pix7NL");
+            ImageIcon icon = new ImageIcon("./img/brunoTiket.jpg");
             Image scaledImage = icon.getImage().getScaledInstance(450, 200, Image.SCALE_SMOOTH);
             JLabel lblImage = new JLabel(new ImageIcon(scaledImage));
             lblImage.setBounds(332, 79, 450, 200);
@@ -144,8 +144,8 @@ public class TiketSayaInterface extends JFrame {
 
         // Gambar kedua (di bawah History)
         try {
-            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1l5R0YeUzxOW0CEhATBjua_SgNL51RPvH");
-            ImageIcon icon = new ImageIcon(ImageIO.read(imageUrl));
+//            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1l5R0YeUzxOW0CEhATBjua_SgNL51RPvH");
+            ImageIcon icon = new ImageIcon("./img/tulusTiket.jpg");
             Image scaledImage = icon.getImage().getScaledInstance(400, 120, Image.SCALE_SMOOTH);
             JLabel lblSecondImage = new JLabel(new ImageIcon(scaledImage));
             lblSecondImage.setBounds(333, 343, 400, 120);
@@ -156,8 +156,8 @@ public class TiketSayaInterface extends JFrame {
 
         // Gambar ketiga (di bawah gambar kedua)
         try {
-            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1bE4x0mP5pDctFnV_-o3cd_IsAhSYCeRM");
-            ImageIcon icon = new ImageIcon(ImageIO.read(imageUrl));
+//            URL imageUrl = new URL("https://drive.google.com/uc?export=view&id=1bE4x0mP5pDctFnV_-o3cd_IsAhSYCeRM");
+            ImageIcon icon = new ImageIcon("./img/hindiaTiket.jpg");
             Image scaledImage = icon.getImage().getScaledInstance(400, 120, Image.SCALE_SMOOTH);
             JLabel lblThirdImage = new JLabel(new ImageIcon(scaledImage));
             lblThirdImage.setBounds(333, 473, 400, 120);

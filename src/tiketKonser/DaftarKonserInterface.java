@@ -111,12 +111,12 @@ public class DaftarKonserInterface extends JFrame {
 
 		// Data gambar dan nama artis
 		String[] imageUrls = {
-			"https://drive.google.com/uc?export=view&id=1_plVFV5K2Bo6WRLbGOgLka81362RGonC",
-			"https://drive.google.com/uc?export=view&id=1pHAVA98KoPhmVHSQD1IB4An4XYk4_5La",
-			"https://drive.google.com/uc?export=view&id=13kqGpmdGYcscWLV4Km9vZJbg1E7JsGKQ",
-			"https://drive.google.com/uc?export=view&id=1eAxLkHegiuXVzWdqOFMDbXxRliZ5OXmk",
-			"https://drive.google.com/uc?export=view&id=1jv2aqHNRXd33grE76ZREYlO41hCN28u3",
-			"https://drive.google.com/uc?export=view&id=1Pii7LHpNLltOTSjMokEjX4DnzjSUdXhq"
+			"./img/brunoKonser.jpg",
+			"./img/hindiaKonser.jpg",
+			"./img/taylorKonser.jpg",
+			"./img/tulusKonser.jpg",
+			"./img/justinKonser.jpg",
+			"./img/fiersaKonser.jpg",
 		};
 
 		String[] artistNames = {
@@ -129,8 +129,8 @@ public class DaftarKonserInterface extends JFrame {
 			itemPanel.setBackground(new Color(25, 20, 24));
 
 			try {
-				URL url = new URL(imageUrls[i]);
-				ImageIcon icon = new ImageIcon(url);
+//				URL url = new URL(imageUrls[i]);
+				ImageIcon icon = new ImageIcon(imageUrls[i]);
 				Image image = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 				JLabel imageLabel = new JLabel(new ImageIcon(image));
 				imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
