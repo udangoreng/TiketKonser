@@ -1,31 +1,45 @@
 package tiketKonser;
 
+import java.util.ArrayList;
+
 public class Order {
     private int orderId;
     private int userId;
     private int konserId;
     private String statusBayar;
+    
+    private static ArrayList<Order> orders = new ArrayList<>();
+    private static int nextOrderId = 1;
 
-    public Order(int orderId, int userId, int konserId, String statusBayar) {
-        this.orderId = orderId;
+    // Constructor yang diperlukan!
+    public Order(int userId, int konserId, String statusBayar) {
+        this.orderId = nextOrderId++;
         this.userId = userId;
         this.konserId = konserId;
         this.statusBayar = statusBayar;
+        orders.add(this);
     }
 
-    public void konfirmasi(int orderId) {
-        System.out.println("konfirmasi");
-        // Tambahkan logika jika diperlukan menggunakan orderId
+    public static Order buatOrder(int userId, int konserId) {
+        Order newOrder = new Order(userId, konserId, "Belum Bayar");
+        System.out.println("Order berhasil dibuat. Order ID: " + newOrder.getOrderId());
+        return newOrder;
     }
 
+    // Method untuk konfirmasi pembayaran
+    public void konfirmasiBayar() {
+        if (!statusBayar.equalsIgnoreCase("Sudah Bayar")) {
+            this.statusBayar = "Sudah Bayar";
+            System.out.println("Pembayaran berhasil dikonfirmasi untuk Order ID: " + orderId);
+        } else {
+            System.out.println("Order ID " + orderId + " sudah dibayar.");
+        }
+    }
+
+    // Method untuk generate Virtual Account (dummy)
     public void generateVA() {
-        System.out.println("generateVA");
-        // Tambahkan logika pembuatan virtual account
-    }
-
-    public void buatOrder(int orderId, int konserId) {
-        System.out.println("buatOrder");
-        // Tambahkan logika pemesanan order
+        String vaNumber = "VA" + orderId + konserId + userId;
+        System.out.println("Virtual Account untuk Order ID " + orderId + ": " + vaNumber);
     }
 
     // Getter dan Setter (opsional)
@@ -59,5 +73,16 @@ public class Order {
 
     public void setStatusBayar(String statusBayar) {
         this.statusBayar = statusBayar;
+    }
+    
+    // Tambahan: mencari order berdasarkan userId
+    public static ArrayList<Order> getOrdersByUserId(int userId) {
+        ArrayList<Order> userOrders = new ArrayList<>();
+        for (Order o : orders) {
+            if (o.getUserId() == userId) {
+                userOrders.add(o);
+            }
+        }
+        return userOrders;
     }
 }
