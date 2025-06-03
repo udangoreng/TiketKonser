@@ -15,10 +15,13 @@ import javax.swing.JCheckBox;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class LoginInterface extends JFrame {
@@ -96,8 +99,24 @@ public class LoginInterface extends JFrame {
 		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new DashboardInterface().setVisible(true);
+				        String email = textPane.getText();
+				        String password = new String(passwordField.getPassword());
+
+				        User user = User.login(email, password);
+				        if (user != null) {
+				            if (user instanceof Admin) {
+				                Admin admin = (Admin) user;
+				                JOptionPane.showMessageDialog(null, "Login Admin Berhasil! Selamat datang, " + admin.getNama());
+				                new DashboardAdminInterface().setVisible(true);
+				            } else {
+				                JOptionPane.showMessageDialog(null, "Login User Berhasil! Selamat datang, " + user.getNama());
+				                new DashboardInterface().setVisible(true);
+				            }
+				            dispose();
+				        } else {
+				            JOptionPane.showMessageDialog(null, "Email atau password salah.");
+				        }
+
 			}
 		});
 		btnNewButton.setBounds(731, 418, 218, 41);
@@ -119,6 +138,13 @@ public class LoginInterface extends JFrame {
 		lblNewLabel_5.setForeground(new Color(0, 128, 255));
 		lblNewLabel_5.setFont(new Font("Poppins", Font.PLAIN, 12));
 		lblNewLabel_5.setBounds(870, 470, 49, 14);
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		    	new RegisterInterface().setVisible(true);
+		    	dispose();
+		    }
+		});
 		contentPane.add(lblNewLabel_5);
 		
 		JPanel panel = new JPanel();

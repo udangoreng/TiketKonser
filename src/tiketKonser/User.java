@@ -17,10 +17,20 @@ public class User {
 		this.password = password;
 	}
 	
+	static {
+		addAdmin("Admin1", "admin1@admin", "admin123", "SuperAdmin");
+		addAdmin("Admin2", "admin2@admin", "admin123", "Admin");
+	}
+	
 	public static void register(String nama, String email, String password) {
 		User user = new User(nextId++, nama, email, password);
         users.add(user);
 	}
+	
+    public static void addAdmin(String nama, String email, String password, String hakAkses) {
+        Admin admin = new Admin(nextId++, nama, email, password, hakAkses);
+        users.add(admin);
+    }
 	
 	public static boolean isEmailExist(String email) {
         for (User user : users) {
@@ -30,10 +40,15 @@ public class User {
         }
         return false;
     }
-		
-	public void login(String email, String password) {
-		System.out.println("email" + "password");
-	}
+	
+	 public static User login(String email, String password) {
+	      for (User user : users) {
+	         if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
+	             return user;
+	            }
+	        }
+	        return null;
+	    }
 	
 	public void logout(String email, String password) {
 		System.out.println("Logout");

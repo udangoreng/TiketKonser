@@ -125,7 +125,7 @@ public class RegisterInterface extends JFrame {
 		        
 				User.register(nama, email, password);
 		        JOptionPane.showMessageDialog(null, "Register Berhasil! Harap Login Untuk Memulai Aplikasi", "Registrasi Sukses", JOptionPane.INFORMATION_MESSAGE);
-		        User.getAllUsers();
+//		        User.getAllUsers();
 
 		        new LoginInterface().setVisible(true);
 		        dispose();
