@@ -95,7 +95,7 @@ public class AddKonserInterface extends JFrame {
 		textField.setBounds(60, 81, 280, 30);
 		panel.add(textField);
 		
-		lblNewLabel_1_1 = new JLabel("Waktu :");
+		lblNewLabel_1_1 = new JLabel("Waktu (HH:MM) :");
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Poppins", Font.PLAIN, 14));
 		lblNewLabel_1_1.setBounds(229, 124, 132, 22);
@@ -111,7 +111,7 @@ public class AddKonserInterface extends JFrame {
 		textField_2.setBounds(60, 157, 132, 30);
 		panel.add(textField_2);
 		
-		lblNewLabel_1_2 = new JLabel("Tanggal :");
+		lblNewLabel_1_2 = new JLabel("Tanggal (DD:MM:YY) :");
 		lblNewLabel_1_2.setForeground(Color.WHITE);
 		lblNewLabel_1_2.setFont(new Font("Poppins", Font.PLAIN, 14));
 		lblNewLabel_1_2.setBounds(60, 124, 132, 22);
@@ -153,11 +153,23 @@ public class AddKonserInterface extends JFrame {
 		btnSimpan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					String nama = textField.getText();
+	                String tanggal = textField_1.getText();
+	                String waktu = textField_2.getText();
+	                String lokasi = textArea_1.getText();
+	                String deskripsi = textArea.getText();
+
+	                if (nama.isEmpty() || tanggal.isEmpty() || waktu.isEmpty() || lokasi.isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Semua field wajib diisi!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                Konser.addKonser(nama, tanggal, waktu, lokasi, deskripsi);
 					String value = textField_4.getText();
 	                new AddCategory(value);
 	                dispose();
 	            } catch (NumberFormatException ex) {
-	                JOptionPane.showMessageDialog(null, "Please enter a valid integer.");
+	                JOptionPane.showMessageDialog(null, "Harap Masukkan Angka!");
 	            }
 	        }
 	    });

@@ -10,6 +10,8 @@ public class Konser {
     private String lokasi;
     private ArrayList<Kategori> kategori;
     private String deskripsi;
+    private static ArrayList<Konser> konserAll = new ArrayList<>();
+    private static int nextId = 1;
 
     public Konser(int konserId, String namaKonser, String tanggalKonser, String waktuKonser,
                   String lokasi, String deskripsi) {
@@ -20,6 +22,11 @@ public class Konser {
         this.lokasi = lokasi;
         this.kategori = new ArrayList<>();
         this.deskripsi = deskripsi;
+    }
+    
+    public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi) {
+        Konser konser = new Konser(nextId++, nama, tanggal, waktu, lokasi, deskripsi);
+        konserAll.add(konser);
     }
 
     public void tampilkanAllKonser() {
@@ -86,4 +93,8 @@ public class Konser {
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
 	}
+	
+    public static ArrayList<Konser> getAllKonser() {
+        return konserAll;
+    }
 }
