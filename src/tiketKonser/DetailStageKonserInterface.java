@@ -60,7 +60,7 @@ public class DetailStageKonserInterface extends JFrame {
 		ImageIcon resizedIcon = new ImageIcon(scaledImage);
 
 		lblNewLabel.setIcon(resizedIcon);
-		lblNewLabel.setBounds(23, 69, 730, 393); // Sesuaikan ukuran bounds dengan ukuran gambar baru
+		lblNewLabel.setBounds(23, 69, 541, 393); // Sesuaikan ukuran bounds dengan ukuran gambar baru
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Stage Konser Bruno Mars");
@@ -71,7 +71,7 @@ public class DetailStageKonserInterface extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (3).jpg"));
-		lblNewLabel_2.setBounds(21, 498, 784, 180);
+		lblNewLabel_2.setBounds(21, 498, 567, 180);
 		contentPane.add(lblNewLabel_2);
 		
 		 // ComboBox metode pembayaran
