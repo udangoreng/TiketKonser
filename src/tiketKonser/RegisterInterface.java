@@ -106,6 +106,31 @@ public class RegisterInterface extends JFrame {
 		btnRegister.setBackground(new Color(128, 0, 255)); // ungu
 		btnRegister.setFocusPainted(false);
 		btnRegister.setFont(new Font("SansSerif", Font.BOLD, 18)); // Font diperbesar
+		btnRegister.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		        String nama = txtNama.getText();
+		        String email = txtEmail.getText();
+		        String password = new String(txtPassword.getPassword());
+
+		        if (nama.isEmpty() || email.isEmpty() || password.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Semua field harus diisi!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+
+		        if (User.isEmailExist(email)) {
+		            JOptionPane.showMessageDialog(null, "Email sudah terdaftar!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+		        
+				User.register(nama, email, password);
+		        JOptionPane.showMessageDialog(null, "Register Berhasil! Harap Login Untuk Memulai Aplikasi", "Registrasi Sukses", JOptionPane.INFORMATION_MESSAGE);
+		        User.getAllUsers();
+
+		        new LoginInterface().setVisible(true);
+		        dispose();
+		    }
+		});
 		contentPane.add(btnRegister);
 
 		// Sudah punya akun
