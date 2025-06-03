@@ -98,6 +98,17 @@ public class MetodePembayaranInterface extends JFrame {
         contentPane.add(panel);
         panel.setLayout(null);
         
+        JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, 250, 667);
+		panel.add(layeredPane);
+		layeredPane.setLayout(null);
+
+		// Label gambar di layer dasar
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (4).jpg"));
+		lblNewLabel_9.setBounds(0, 0, 250, 667);
+		layeredPane.add(lblNewLabel_9, Integer.valueOf(0));
+        
         JLabel lblNewLabel = new JLabel("");
         ImageIcon originalIcon = new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download.jpg");
         Image image = originalIcon.getImage().getScaledInstance(250, 350, Image.SCALE_SMOOTH); 
@@ -107,7 +118,6 @@ public class MetodePembayaranInterface extends JFrame {
         panel.add(lblNewLabel);
         
         JLabel lblNewLabel_1 = new JLabel("Detail Pembelian");
-<<<<<<< HEAD
         lblNewLabel_1.setBounds(89, 36, 281, 24);
         lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 30));
         lblNewLabel_1.setForeground(Color.WHITE);
@@ -136,37 +146,36 @@ public class MetodePembayaranInterface extends JFrame {
         lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 18));
         lblNewLabel_3.setForeground(Color.WHITE);
         layeredPane.add(lblNewLabel_3, Integer.valueOf(2));
-=======
+
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
         lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 20));
         lblNewLabel_1.setBackground(new Color(255, 255, 255));
         lblNewLabel_1.setBounds(135, 32, 193, 24);
         panel.add(lblNewLabel_1);
         
-        JLabel lblNewLabel_2 = new JLabel("Bruno Mars - JAKARTA INTERNASIONAL STADIUM");
-        lblNewLabel_2.setFont(new Font("Poppins Medium", Font.BOLD, 15));
-        lblNewLabel_2.setForeground(new Color(255, 255, 255));
-        lblNewLabel_2.setBounds(47, 409, 493, 58);
-        panel.add(lblNewLabel_2);
+        JLabel lblNewLabel_2_1 = new JLabel("Bruno Mars - JAKARTA INTERNASIONAL STADIUM");
+        lblNewLabel_2_1.setFont(new Font("Poppins Medium", Font.BOLD, 15));
+        lblNewLabel_2_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_2_1.setBounds(47, 409, 493, 58);
+        panel.add(lblNewLabel_2_1);
         
-        JLabel lblNewLabel_3 = new JLabel("Kategori Seat: Gold VIP Package");
-        lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-        lblNewLabel_3.setForeground(new Color(255, 255, 255));
-        lblNewLabel_3.setBounds(47, 490, 252, 36);
-        panel.add(lblNewLabel_3);
+        JLabel lblNewLabel_3_1 = new JLabel("Kategori Seat: Gold VIP Package");
+        lblNewLabel_3_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNewLabel_3_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_3_1.setBounds(47, 490, 252, 36);
+        panel.add(lblNewLabel_3_1);
         
-        JLabel lblNewLabel_4 = new JLabel("Harga : Rp 7.650.000");
-        lblNewLabel_4.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-        lblNewLabel_4.setForeground(new Color(255, 255, 255));
-        lblNewLabel_4.setBounds(47, 537, 193, 24);
-        panel.add(lblNewLabel_4);
+        JLabel lblNewLabel_4_1 = new JLabel("Harga : Rp 7.650.000");
+        lblNewLabel_4_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNewLabel_4_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_4_1.setBounds(47, 537, 193, 24);
+        panel.add(lblNewLabel_4_1);
         
-        JLabel lblNewLabel_5 = new JLabel("Order Id: 12345");
-        lblNewLabel_5.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-        lblNewLabel_5.setForeground(new Color(255, 255, 255));
-        lblNewLabel_5.setBounds(47, 465, 160, 14);
-        panel.add(lblNewLabel_5);
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
+        JLabel lblNewLabel_5_1 = new JLabel("Order Id: 12345");
+        lblNewLabel_5_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNewLabel_5_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_5_1.setBounds(47, 465, 160, 14);
+        panel.add(lblNewLabel_5_1);
         
         JLabel lblNewLabel_6 = new JLabel("Pilih Metode Pembayaran");
         lblNewLabel_6.setFont(new Font("Poppins", Font.PLAIN, 18));

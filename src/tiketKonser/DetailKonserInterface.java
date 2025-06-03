@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -62,17 +63,24 @@ public class DetailKonserInterface extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, 250, 667);
+		panel.add(layeredPane);
+		layeredPane.setLayout(null);
+
+		// Label gambar di layer dasar
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (4).jpg"));
+		lblNewLabel_9.setBounds(0, 0, 250, 667);
+		layeredPane.add(lblNewLabel_9, Integer.valueOf(0));
+		
 		JLabel lblNewLabel = new JLabel("Hi, Username");
 		lblNewLabel.setBounds(44, 51, 149, 22);
 		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 20));
 		lblNewLabel.setBackground(new Color(26, 21, 24));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-<<<<<<< HEAD
 		layeredPane.add(lblNewLabel, Integer.valueOf(1)); // Tambah di layer atas gambar
-
-=======
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
 		lblNewLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 		    @Override
@@ -86,11 +94,7 @@ public class DetailKonserInterface extends JFrame {
 		lblNewLabel_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBackground(new Color(26, 21, 24));
-<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_1, Integer.valueOf(1));
-
-=======
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
 		lblNewLabel_1.setBounds(44, 200, 153, 31);
 		lblNewLabel_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
@@ -106,11 +110,7 @@ public class DetailKonserInterface extends JFrame {
 		lblNewLabel_2.setBackground(new Color(26, 21, 24));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_2, Integer.valueOf(1));
-
-=======
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
 		lblNewLabel_2.setBounds(44, 242, 138, 22);
 		lblNewLabel_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
@@ -136,21 +136,13 @@ public class DetailKonserInterface extends JFrame {
 		    }
 		});
 		panel.add(lblNewLabel_3);
-<<<<<<< HEAD
-
-=======
-		
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
 		JLabel lblNewLabel_4 = new JLabel("LogOut");
 		lblNewLabel_4.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setBackground(new Color(26, 21, 24));
-<<<<<<< HEAD
 		layeredPane.add(lblNewLabel_4, Integer.valueOf(1));
 		
 		layeredPane.add(lblNewLabel_3, Integer.valueOf(1));
-=======
->>>>>>> 307e91d202650357b30d266f8556ed46ce67c79a
 		lblNewLabel_4.setBounds(44, 593, 79, 22);
 		lblNewLabel_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
