@@ -9,13 +9,14 @@ public class Konser {
     private String waktuKonser;
     private String lokasi;
     private String deskripsi;
+    private String filepathGambar;
     private ArrayList<Kategori> kategori;
     private static ArrayList<Konser> konserAll = new ArrayList<>();
     private static Konser lastAddedKonser = null;
     private static int nextId = 1;
 
     public Konser(int konserId, String namaKonser, String tanggalKonser, String waktuKonser,
-                  String lokasi, String deskripsi) {
+                  String lokasi, String deskripsi, String gambar) {
         this.konserId = konserId;
         this.namaKonser = namaKonser;
         this.tanggalKonser = tanggalKonser;
@@ -23,15 +24,18 @@ public class Konser {
         this.lokasi = lokasi;
         this.kategori = new ArrayList<>();
         this.deskripsi = deskripsi;
+        this.filepathGambar = gambar;
     }
     
     static {
-    	Konser.addKonser("Rock Concert", "2025-07-01", "20:00", "Stadium XYZ", "sdfdghgfd");
-    	Konser.addKonser("Jazz Night", "2025-07-15", "19:00", "Theater ABC", "asdfgjfthdgfds");
+    	Konser.addKonser("Tulus", "2025-07-01", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus", "tulusKonser.jpg");
+        Konser.addKonser("Bruno Mars", "2025-07-15", "19:00", "Madya Stadium", "Konser Bruno Mars World Tour", "brunoKonser.jpg");
+//        Konser.addKonser("Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir'", "hindiaKonser.jpg");
+//        Konser.addKonser("Taylor Swift", "2025-09-10", "20:00", "GBK Stadium", "The Eras Tour - Jakarta", "taylorKonser.jpg");
     }
     
-    public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi) {
-        Konser konser = new Konser(nextId++, nama, tanggal, waktu, lokasi, deskripsi);
+    public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi, String gambar) {
+        Konser konser = new Konser(nextId++, nama, tanggal, waktu, lokasi, deskripsi, gambar);
         konserAll.add(konser);
         lastAddedKonser = konser;
     }
@@ -111,4 +115,12 @@ public class Konser {
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
 	}
+	
+	public String getFilepathGambar() {
+        return filepathGambar;
+    }
+
+    public void setFilepathGambar(String gambar) {
+        this.filepathGambar = gambar;
+    }
 }

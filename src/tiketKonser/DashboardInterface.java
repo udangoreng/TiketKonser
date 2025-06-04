@@ -25,6 +25,8 @@ public class DashboardInterface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	JLabel lblHiUsername;
+    private User currentUser;
 
 	/**
 	 * Launch the application.
@@ -43,10 +45,37 @@ public class DashboardInterface extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public DashboardInterface() {
+    /**
+     * Default constructor: Initializes components.
+     * Called when no user is passed (e.g., direct execution via main).
+     */
+    public DashboardInterface() {
+        initComponents(); // Call a common method to initialize GUI components
+        // lblHiUsername will retain its default text "Hi, Username" set in initComponents
+    }
+
+    /**
+     * Constructor that accepts a User object.
+     * This should be called after a successful login.
+     * @param user The currently logged-in User object.
+     */
+    public DashboardInterface(User user) {
+        this(); // Calls the default constructor to set up the GUI (initComponents)
+        this.currentUser = user;
+
+        if (this.currentUser != null) {
+            lblHiUsername.setText("Hi, " + this.currentUser.getNama());
+        } else {
+            // Fallback if user is null, though ideally LoginInterface prevents this
+            lblHiUsername.setText("Hi, Guest");
+        }
+    }
+
+    /**
+     * Initializes all GUI components.
+     * This method is called by both constructors.
+     */
+    private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 973, 596);
 		contentPane = new JPanel();
@@ -63,17 +92,11 @@ public class DashboardInterface extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Hi, ");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(36, 42, 45, 30);
-		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 20));
-		
-		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(65, 42, 175, 30);
-		panel.add(lblNewLabel_1);
+		lblHiUsername = new JLabel("Hi, Username"); // Default text
+        lblHiUsername.setForeground(Color.WHITE);
+        lblHiUsername.setFont(new Font("Poppins", Font.BOLD, 20));
+        lblHiUsername.setBounds(24, 55, 250, 30); // Ensure width is sufficient
+        panel.add(lblHiUsername);
 		
 		JLabel lblNewLabel_3 = new JLabel("Lihat Konser");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));

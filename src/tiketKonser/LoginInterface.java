@@ -113,7 +113,7 @@ contentPane.setLayout(null);
 				                new DashboardAdminInterface().setVisible(true);
 				            } else {
 				                JOptionPane.showMessageDialog(null, "Login User Berhasil! Selamat datang, " + user.getNama());
-				                new DashboardInterface().setVisible(true);
+				                new DashboardInterface(user).setVisible(true);
 				            }
 				            dispose();
 				        } else {

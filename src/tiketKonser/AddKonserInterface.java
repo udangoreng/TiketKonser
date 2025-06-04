@@ -37,6 +37,8 @@ public class AddKonserInterface extends JFrame {
 	private JTextArea textArea_1;
 	private JLabel lblLokasiKonser;
 	private JTextField textField_4;
+	private JTextField textField_3;
+	private JLabel lblFilepathGambar;
 
 	/**
 	 * Launch the application.
@@ -139,17 +141,28 @@ public class AddKonserInterface extends JFrame {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(60, 559, 132, 30);
+		textField_4.setBounds(60, 622, 132, 30);
 		panel.add(textField_4);
 		
 		JLabel lblKategoriKonser = new JLabel("Jumlah Kategori :");
 		lblKategoriKonser.setForeground(Color.WHITE);
 		lblKategoriKonser.setFont(new Font("Poppins", Font.PLAIN, 14));
-		lblKategoriKonser.setBounds(60, 528, 132, 22);
+		lblKategoriKonser.setBounds(60, 591, 132, 22);
 		panel.add(lblKategoriKonser);
 		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(60, 550, 280, 30);
+		panel.add(textField_3);
+		
+		lblFilepathGambar = new JLabel("Filepath Gambar :");
+		lblFilepathGambar.setForeground(Color.WHITE);
+		lblFilepathGambar.setFont(new Font("Poppins", Font.PLAIN, 14));
+		lblFilepathGambar.setBounds(60, 519, 280, 22);
+		panel.add(lblFilepathGambar);
+		
 		JButton btnSimpan = new JButton("Simpan");
-		btnSimpan.setBounds(229, 559, 118, 28);
+		btnSimpan.setBounds(229, 622, 118, 28);
 		btnSimpan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -158,13 +171,14 @@ public class AddKonserInterface extends JFrame {
 	                String waktu = textField_2.getText();
 	                String lokasi = textArea_1.getText();
 	                String deskripsi = textArea.getText();
+	                String filepath = textField_3.getText();
 
-	                if (nama.isEmpty() || tanggal.isEmpty() || waktu.isEmpty() || lokasi.isEmpty()) {
+	                if (nama.isEmpty() || tanggal.isEmpty() || waktu.isEmpty() || lokasi.isEmpty() || filepath.isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Semua field wajib diisi!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
 	                    return;
 	                }
 	                
-	                Konser.addKonser(nama, tanggal, waktu, lokasi, deskripsi);
+	                Konser.addKonser(nama, tanggal, waktu, lokasi, deskripsi, filepath);
 	                Konser.getAllKonser();
 					String value = textField_4.getText();
 	                new AddCategory(value);
