@@ -183,7 +183,7 @@ public class RegisterInterface extends JFrame {
 		});
 		contentPane.add(lblLogin);
 		
-		ImageIcon originalIcon = new ImageIcon("C:\\Users\\hasnatyam\\eclipse-workspace\\TiketKonser\\img\\StagePass-removebg-preview.png");
+		ImageIcon originalIcon = new ImageIcon("./img/StagePass-removebg-preview.png");
 
 		// Resize image
 		Image originalImage = originalIcon.getImage();

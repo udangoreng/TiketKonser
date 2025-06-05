@@ -172,6 +172,5 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(resizedImage));
 		lblNewLabel.setBounds(876, 7, 147, 77);
 		contentPane.add(lblNewLabel);
-
 	}
 }
