@@ -24,6 +24,10 @@ public class DetailKonserInterface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	JLabel lblHiUsername;
+	JLabel lblNewLabel_5;
+    private User currentUser;
+    private Konser detailKonser;
 
 	/**
 	 * Launch the application.
@@ -41,11 +45,35 @@ public class DetailKonserInterface extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public DetailKonserInterface() {
+        initComponents(); // Call a common method to initialize GUI components
+        // lblHiUsername will retain its default text "Hi, Username" set in initComponents
+    }
+
+    /**
+     * Constructor that accepts a User object.
+     * This should be called after a successful login.
+     * @param user The currently logged-in User object.
+     */
+    public DetailKonserInterface(Konser konser, User user) {
+        this(); // Calls the default constructor to set up the GUI (initComponents)
+        this.currentUser = user;
+        this.detailKonser = konser;
+
+        if (this.currentUser != null) {
+            lblHiUsername.setText("Hi, " + this.currentUser.getNama());
+            lblNewLabel_5.setText(detailKonser.getNamaKonser());
+        } else {
+            // Fallback if user is null, though ideally LoginInterface prevents this
+            lblHiUsername.setText("Hi, Guest");
+        }
+    }
+
+    /**
+     * Initializes all GUI components.
+     * This method is called by both constructors.
+     */
+    private void initComponents() {
 		setBackground(new Color(81, 20, 101));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1224, 690);
@@ -85,7 +113,7 @@ public class DetailKonserInterface extends JFrame {
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
-		    	new DashboardInterface().setVisible(true);
+		    	new DashboardInterface(currentUser).setVisible(true);
 		    	dispose();
 		    }
 		});

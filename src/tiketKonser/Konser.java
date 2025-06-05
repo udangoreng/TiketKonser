@@ -30,8 +30,8 @@ public class Konser {
     static {
     	Konser.addKonser("Tulus", "2025-07-01", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus", "tulusKonser.jpg");
         Konser.addKonser("Bruno Mars", "2025-07-15", "19:00", "Madya Stadium", "Konser Bruno Mars World Tour", "brunoKonser.jpg");
-//        Konser.addKonser("Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir'", "hindiaKonser.jpg");
-//        Konser.addKonser("Taylor Swift", "2025-09-10", "20:00", "GBK Stadium", "The Eras Tour - Jakarta", "taylorKonser.jpg");
+        Konser.addKonser("Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir'", "hindiaKonser.jpg");
+        Konser.addKonser("Taylor Swift", "2025-09-10", "20:00", "GBK Stadium", "The Eras Tour - Jakarta", "taylorKonser.jpg");
     }
     
     public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi, String gambar) {
@@ -45,9 +45,9 @@ public class Konser {
     }
     
     public static ArrayList<Konser> getAllKonser() {
-    	for (Konser konser : konserAll) {
-            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
-        }
+//    	for (Konser konser : konserAll) {
+//            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
+//        }
         return konserAll;
     }
 

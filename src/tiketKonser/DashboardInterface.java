@@ -106,7 +106,7 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
-		    	new DaftarKonserInterface().setVisible(true);
+		    	new DaftarKonserInterface(currentUser).setVisible(true);
 		    	dispose();
 		    }
 		});
