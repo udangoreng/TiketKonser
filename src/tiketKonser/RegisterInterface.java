@@ -31,7 +31,6 @@ public class RegisterInterface extends JFrame {
 	public RegisterInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 678);
-		setUndecorated(true); // Tanpa border/frame OS
 
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(25, 20, 24)); // Warna background utama (kanan)
