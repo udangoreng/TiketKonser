@@ -23,8 +23,6 @@ public class Admin extends User {
     public void kirimETicket() {
         System.out.println("Kirim E-Ticket");
     }
-
-    // Getter dan Setter untuk hakAkses dapat ditambahkan jika perlu
     
     public void setHakAkses(String previlege) {
     	this.hakAkses = previlege;

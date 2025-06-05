@@ -110,7 +110,6 @@ public class DaftarKonserInterface extends JFrame {
         lblProfilSaya.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                // Pass currentUser to other interfaces if they need it
                 new ProfilInterface(/* pass currentUser if needed */).setVisible(true);
                 dispose();
             }
@@ -200,9 +199,8 @@ public class DaftarKonserInterface extends JFrame {
                 detailButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
                 detailButton.addActionListener(e -> {
                     System.out.println("Detail untuk: " + konser.getNamaKonser());
-                    // Consider passing 'konser' and 'currentUser' to DetailKonserInterface
-                    new DetailKonserInterface(/* pass konser, currentUser if needed */).setVisible(true);
-                    // dispose(); // Decide if this frame should close
+                    new DetailKonserInterface(konser, currentUser).setVisible(true);
+                    dispose();
                 });
                 itemPanel.add(detailButton);
                 panelGambar.add(itemPanel);
