@@ -135,7 +135,7 @@ public class MetodePembayaranInterface extends JFrame {
         layeredPane.add(lblNewLabel_3, Integer.valueOf(2));
         
         // Load gambar asli
-        ImageIcon originalIcon = new ImageIcon("C:\\Users\\hasnatyam\\eclipse-workspace\\TiketKonser\\img\\brunoKonser.jpg");
+        ImageIcon originalIcon = new ImageIcon("./img/brunoKonser.jpg");
 
         // Resize gambar ke 309x356
         Image resizedImage = originalIcon.getImage().getScaledInstance(309, 356, Image.SCALE_SMOOTH);

@@ -1,266 +1,331 @@
 package tiketKonser;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.BorderFactory;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+// Assuming Konser and User classes are in the same package or imported
+import java.util.ArrayList; // For Konser.getAllKonser()
 
 public class DetailKonserInterface extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	JLabel lblHiUsername;
-	JLabel lblNewLabel_5;
-    private User currentUser;
-    private Konser detailKonser;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DetailKonserInterface frame = new DetailKonserInterface();
-					frame.setVisible(true);
-					frame.setSize(1024, 678);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public DetailKonserInterface() {
-        initComponents(); // Call a common method to initialize GUI components
-        // lblHiUsername will retain its default text "Hi, Username" set in initComponents
+    private User currentUser;
+    private Konser currentKonser;
+
+    private JLabel lblSidebarGreeting;
+    private JLabel lblConcertTitleVenue;
+    private JLabel lblConcertImageDisplay;
+    private JTextArea txtConcertDescriptionArea;
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    User testUser = new User(99, "Main Test User", "main@test.com", "password123");
+
+                    Konser konserToDisplay = null;
+                    ArrayList<Konser> allAvailableKonsers = Konser.getAllKonser();
+
+                    if (allAvailableKonsers != null && !allAvailableKonsers.isEmpty()) {
+                        konserToDisplay = allAvailableKonsers.get(0);
+                    } else {
+                        System.err.println("Konser list is empty. Creating a dummy konser for DetailKonserInterface test.");
+                        konserToDisplay = new Konser(0, "Test Concert", "2025-12-31", "20:00", 
+                                                     "Test Venue Arena", 
+                                                     "Test Description.", 
+                                                     "default_image.jpg");
+                    }
+                    
+                    DetailKonserInterface frame = new DetailKonserInterface(konserToDisplay, testUser);
+                    frame.setVisible(true);
+                    frame.setSize(1024, 678);
+                    frame.setLocationRelativeTo(null);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-    /**
-     * Constructor that accepts a User object.
-     * This should be called after a successful login.
-     * @param user The currently logged-in User object.
-     */
-    public DetailKonserInterface(Konser konser, User user) {
-        this(); // Calls the default constructor to set up the GUI (initComponents)
-        this.currentUser = user;
-        this.detailKonser = konser;
+    public DetailKonserInterface() {
+        initComponents();
+        updateUserGreeting();     
+        populateConcertDetails(); 
+    }
 
+    public DetailKonserInterface(User user) {
+        this(); 
+        this.currentUser = user;
+        updateUserGreeting();
+    }
+    
+    public DetailKonserInterface(Konser konser, User user) {
+        this(); 
+        this.currentUser = user;
+        this.currentKonser = konser; 
+        
+        updateUserGreeting();       
+        populateConcertDetails();   
+    }
+    
+    private void updateUserGreeting() {
+        if (lblSidebarGreeting == null) return; 
         if (this.currentUser != null) {
-            lblHiUsername.setText("Hi, " + this.currentUser.getNama());
-            lblNewLabel_5.setText(detailKonser.getNamaKonser());
+            lblSidebarGreeting.setText("Hi, " + this.currentUser.getNama());
         } else {
-            // Fallback if user is null, though ideally LoginInterface prevents this
-            lblHiUsername.setText("Hi, Guest");
+            lblSidebarGreeting.setText("Hi, Guest");
         }
     }
 
-    /**
-     * Initializes all GUI components.
-     * This method is called by both constructors.
-     */
+    private void populateConcertDetails() {
+        if (currentKonser != null) {
+            if (lblConcertTitleVenue != null) {
+                lblConcertTitleVenue.setText(currentKonser.getNamaKonser().toUpperCase() + 
+                                             " - " + currentKonser.getLokasiKonser().toUpperCase());
+            }
+            if (lblConcertImageDisplay != null) {
+                try {
+                    String imagePath = "./img/" + currentKonser.getFilepathGambar();
+                    ImageIcon icon = new ImageIcon(imagePath);
+                    Image img = icon.getImage();
+                    Image newImg = img.getScaledInstance(350, 450, Image.SCALE_SMOOTH);
+                    lblConcertImageDisplay.setIcon(new ImageIcon(newImg));
+                    lblConcertImageDisplay.setText(""); 
+                } catch (Exception e) {
+                    lblConcertImageDisplay.setIcon(null);
+                    lblConcertImageDisplay.setText("Gambar tidak tersedia");
+                    System.err.println("Error loading image: " + currentKonser.getFilepathGambar() + " - " + e.getMessage());
+                }
+            }
+            if (txtConcertDescriptionArea != null) {
+                StringBuilder description = new StringBuilder();
+                description.append("🎤 Konser: ").append(currentKonser.getNamaKonser()).append("\n\n");
+                description.append("📅 Tanggal: ").append(currentKonser.getTanggalKonser()).append("\n");
+                description.append("🕗 Waktu: ").append(currentKonser.getWaktuKonser()).append("\n"); 
+                description.append("📍 Lokasi:\n").append(currentKonser.getLokasiKonser()).append("\n\n");
+                description.append("📖 Tentang Konser:\n").append(currentKonser.getDeskripsi()).append("\n\n");
+                
+                txtConcertDescriptionArea.setText(description.toString());
+                txtConcertDescriptionArea.setCaretPosition(0); 
+            }
+        } else {
+            if (lblConcertTitleVenue != null) lblConcertTitleVenue.setText("Detail Konser Tidak Tersedia");
+            if (lblConcertImageDisplay != null) {
+                lblConcertImageDisplay.setIcon(null);
+                lblConcertImageDisplay.setText("Gambar tidak tersedia");
+            }
+            if (txtConcertDescriptionArea != null) {
+                txtConcertDescriptionArea.setText("Informasi konser tidak dapat dimuat.");
+            }
+        }
+    }
+
     private void initComponents() {
-		setBackground(new Color(81, 20, 101));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1224, 690);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(26, 21, 24));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        contentPane = new JPanel();
+        contentPane.setBackground(new Color(26, 21, 24));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(81, 20, 101));
-		panel.setBounds(0, 0, 255, 661);
-		panel.setSize(250,678);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 250, 667);
-		panel.add(layeredPane);
-		layeredPane.setLayout(null);
+        JPanel panelSidebar = new JPanel();
+        panelSidebar.setBackground(new Color(81, 20, 101));
+        panelSidebar.setBounds(0, 0, 250, 678); 
+        contentPane.add(panelSidebar);
+        panelSidebar.setLayout(null);
 
-		// Label gambar di layer dasar
-		JLabel lblNewLabel_9 = new JLabel("");
-		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (4).jpg"));
-		lblNewLabel_9.setBounds(0, 0, 250, 667);
-		layeredPane.add(lblNewLabel_9, Integer.valueOf(0));
-		
-		JLabel lblNewLabel = new JLabel("Hi, Username");
-		lblNewLabel.setBounds(44, 51, 149, 22);
-		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Poppins", Font.BOLD, 20));
-		lblNewLabel.setBackground(new Color(26, 21, 24));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		layeredPane.add(lblNewLabel, Integer.valueOf(1)); // Tambah di layer atas gambar
-		lblNewLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		    	new DashboardInterface(currentUser).setVisible(true);
-		    	dispose();
-		    }
-		});
-		
-		JLabel lblNewLabel_1 = new JLabel("Lihat Konser");
-		lblNewLabel_1.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBackground(new Color(26, 21, 24));
-		layeredPane.add(lblNewLabel_1, Integer.valueOf(1));
-		lblNewLabel_1.setBounds(44, 200, 153, 31);
-		lblNewLabel_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		    	new DaftarKonserInterface().setVisible(true);
-		    	dispose();
-		    }
-		});
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Tiket Saya");
-		lblNewLabel_2.setBackground(new Color(26, 21, 24));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		layeredPane.add(lblNewLabel_2, Integer.valueOf(1));
-		lblNewLabel_2.setBounds(44, 242, 138, 22);
-		lblNewLabel_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		    	new TiketSayaInterface().setVisible(true);
-		    	dispose();
-		    }
-		});
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Profil Saya");
-		lblNewLabel_3.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_3.setBackground(new Color(26, 21, 24));
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(44, 275, 133, 31);
-		lblNewLabel_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		    	new ProfilInterface().setVisible(true);
-		    	dispose();
-		    }
-		});
-		panel.add(lblNewLabel_3);
-		JLabel lblNewLabel_4 = new JLabel("LogOut");
-		lblNewLabel_4.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setBackground(new Color(26, 21, 24));
-		layeredPane.add(lblNewLabel_4, Integer.valueOf(1));
-		
-		layeredPane.add(lblNewLabel_3, Integer.valueOf(1));
-		lblNewLabel_4.setBounds(44, 593, 79, 22);
-		lblNewLabel_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		    	new LoginInterface().setVisible(true);
-		    	dispose();
-		    }
-		});
-		panel.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("BRUNO MARS - JAKARTA INTERNASIONAL  STADIUM");
-		lblNewLabel_5.setFont(new Font("Poppins", Font.BOLD, 20));
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBounds(272, 27, 554, 62);
-		contentPane.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(271, 88, 350, 450);
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 250, panelSidebar.getHeight());
+        panelSidebar.add(layeredPane);
 
-		ImageIcon icon = new ImageIcon("./img/brunoKonser.jpg");
-		Image img = icon.getImage();
-		Image newImg = img.getScaledInstance(350, 450, Image.SCALE_SMOOTH);
-		lblNewLabel_6.setIcon(new ImageIcon(newImg));
+        JLabel lblSidebarBackground = new JLabel("");
+        try {
+             lblSidebarBackground.setIcon(new ImageIcon("./img/sidebar_bg_default.jpg")); 
+        } catch (Exception ex){
+            // Provide a fallback or ensure the image exists
+            // For now, using the user's specific path as an example if relative fails during their test
+            // In a real app, this path should be relative or loaded as a resource.
+            try {
+                lblSidebarBackground.setIcon(new ImageIcon("C:\\Users\\hasnatyam\\Downloads\\download (4).jpg"));
+            } catch (Exception e2) {
+                System.err.println("Sidebar background image not found.");
+            }
+        }
+        lblSidebarBackground.setBounds(0, 0, 250, layeredPane.getHeight());
+        layeredPane.add(lblSidebarBackground, Integer.valueOf(0));
 
-		contentPane.add(lblNewLabel_6);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(647, 88, 478, 372);
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setFont(new Font("Poppins", Font.PLAIN, 13));
-		textArea.setForeground(Color.WHITE);
-		textArea.setBackground(new Color(26, 21, 24));
-		textArea.setText(
-		    "🎤 Konser Bruno Mars - Jakarta 2024\n\n" +
-		    "📅 Tanggal: 13-14 September 2024\n" +
-		    "🕗 Waktu: 20:00 WIB (pintu dibuka 18:00 WIB)\n" +
-		    "📍 Lokasi:\n" +
-		    "Jakarta International Stadium (JIS)\n" +
-		    "Jl. Sunter Permai Raya, Tanjung Priok, Jakarta Utara\n\n" +
-		    "👨‍🎤 Artis:\n" +
-		    "Bruno Mars & The Hooligans\n\n" +
-		    "Tentang Artis\n"+
-		    "Bruno Mars (nama asli: Peter Gene Hernandez) adalah penyanyi, penulis lagu, dan produser musik asal Amerika Serikat yang dikenal dengan gaya retro dan funky. Kariernya melejit sejak 2010 dan ia dikenal sebagai salah satu performer terbaik secara live.\n\n"+
-		    "Genre: Pop, Funk, R&B\n" +
-		    "Hits: Uptown Funk, 24K Magic, Just The Way You Are, When I Was Your Man\n\n"
-		);
-		contentPane.add(textArea);
-		
-		JButton btnNewButton = new JButton("pesan tiket");
-		btnNewButton.setFont(new Font("Poppins", Font.BOLD, 13));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new DetailStageKonserInterface().setVisible(true);
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						// Simulasi userId dan konserId (bisa kamu sesuaikan dari session/login aktif)
-						int userId = 1;
-						int konserId = 1;
+        lblSidebarGreeting = new JLabel("Hi, Username"); 
+        lblSidebarGreeting.setBounds(20, 51, 210, 30); 
+        lblSidebarGreeting.setFont(new Font("Poppins", Font.BOLD, 20));
+        lblSidebarGreeting.setForeground(new Color(255, 255, 255));
+        layeredPane.add(lblSidebarGreeting, Integer.valueOf(1)); 
+        lblSidebarGreeting.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblSidebarGreeting.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (currentUser != null) {
+                    new DashboardInterface(currentUser).setVisible(true);
+                } else {
+                    new DashboardInterface().setVisible(true); // Or navigate to login
+                }
+                dispose();
+            }
+        });
 
-						// Proses order
-						Order order = Order.buatOrder(userId, konserId);
-						order.generateVA();
-						order.konfirmasiBayar();
+        JLabel lblNavLihatKonser = new JLabel("Lihat Konser");
+        lblNavLihatKonser.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNavLihatKonser.setForeground(new Color(255, 255, 255));
+        lblNavLihatKonser.setBounds(20, 130, 153, 31); 
+        layeredPane.add(lblNavLihatKonser, Integer.valueOf(1));
+        lblNavLihatKonser.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblNavLihatKonser.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                 if (currentUser != null) {
+                    new DaftarKonserInterface(currentUser).setVisible(true);
+                } else {
+                    new DaftarKonserInterface().setVisible(true); // Or navigate to login
+                }
+                dispose();
+            }
+        });
+        
+        JLabel lblNavTiketSaya = new JLabel("Tiket Saya");
+        lblNavTiketSaya.setForeground(new Color(255, 255, 255));
+        lblNavTiketSaya.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNavTiketSaya.setBounds(20, 170, 138, 31); 
+        layeredPane.add(lblNavTiketSaya, Integer.valueOf(1));
+        lblNavTiketSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblNavTiketSaya.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // Assuming TiketSayaInterface might also need currentUser
+                // new TiketSayaInterface(currentUser).setVisible(true); 
+                new TiketSayaInterface().setVisible(true);
+                dispose();
+            }
+        });
+        
+        JLabel lblNavProfilSaya = new JLabel("Profil Saya");
+        lblNavProfilSaya.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNavProfilSaya.setForeground(new Color(255, 255, 255));
+        lblNavProfilSaya.setBounds(20, 210, 133, 31); 
+        layeredPane.add(lblNavProfilSaya, Integer.valueOf(1));
+        lblNavProfilSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblNavProfilSaya.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                new ProfilInterface().setVisible(true);
+                dispose();
+            }
+        });
+        
+        JLabel lblNavLogout = new JLabel("Logout");
+        lblNavLogout.setFont(new Font("Poppins Medium", Font.PLAIN, 14));
+        lblNavLogout.setForeground(new Color(255, 255, 255));
+        lblNavLogout.setBounds(20, panelSidebar.getHeight() - 70, 79, 31); 
+        layeredPane.add(lblNavLogout, Integer.valueOf(1));
+        lblNavLogout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblNavLogout.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                new LoginInterface().setVisible(true);
+                dispose();
+            }
+        });
+        
+        lblConcertTitleVenue = new JLabel("NAMA KONSER - LOKASI"); 
+        lblConcertTitleVenue.setFont(new Font("Poppins", Font.BOLD, 20));
+        lblConcertTitleVenue.setForeground(new Color(255, 255, 255));
+        lblConcertTitleVenue.setBounds(275, 30, 700, 30); 
+        contentPane.add(lblConcertTitleVenue);
+        
+        lblConcertImageDisplay = new JLabel(); 
+        lblConcertImageDisplay.setBounds(275, 75, 350, 450); 
+        lblConcertImageDisplay.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+        lblConcertImageDisplay.setHorizontalAlignment(JLabel.CENTER);
+        lblConcertImageDisplay.setForeground(Color.WHITE); 
+        contentPane.add(lblConcertImageDisplay);
+        
+        txtConcertDescriptionArea = new JTextArea(); 
+        txtConcertDescriptionArea.setEditable(false);
+        txtConcertDescriptionArea.setWrapStyleWord(true);
+        txtConcertDescriptionArea.setLineWrap(true);
+        txtConcertDescriptionArea.setFont(new Font("Poppins", Font.PLAIN, 13));
+        txtConcertDescriptionArea.setForeground(Color.WHITE);
+        txtConcertDescriptionArea.setBackground(new Color(30, 25, 29)); 
+        txtConcertDescriptionArea.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-						// Pindah ke detail stage konser
-						new DetailStageKonserInterface().setVisible(true);
-						dispose(); // Tutup window sekarang
-					}
-				});
-			}
-		});
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(1015, 515, 142, 23);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel_7 = new JLabel("Kategori seat:");
-		lblNewLabel_7.setBackground(new Color(26, 21, 24));
-		lblNewLabel_7.setFont(new Font("Poppins", Font.PLAIN, 13));
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_7.setBounds(647, 473, 98, 14);
-		contentPane.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("klick for more info");
-		lblNewLabel_8.setFont(new Font("Poppins", Font.PLAIN, 13));
-		lblNewLabel_8.setForeground(new Color(0, 128, 255));
-		lblNewLabel_8.setBackground(new Color(26, 21, 24));
-		lblNewLabel_8.setBounds(742, 473, 137, 14);
-		contentPane.add(lblNewLabel_8);
-	}
+        JScrollPane descriptionScrollPane = new JScrollPane(txtConcertDescriptionArea);
+        descriptionScrollPane.setBounds(lblConcertImageDisplay.getX() + lblConcertImageDisplay.getWidth() + 20, 75, 
+                                        1024 - (lblConcertImageDisplay.getX() + lblConcertImageDisplay.getWidth() + 20) - 30, 
+                                        372); 
+        descriptionScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        contentPane.add(descriptionScrollPane);
+        
+        JButton btnPesanTiket = new JButton("Pesan Tiket");
+        btnPesanTiket.setFont(new Font("Poppins", Font.BOLD, 13));
+        btnPesanTiket.setForeground(Color.WHITE);
+        btnPesanTiket.setBackground(new Color(100, 40, 120)); 
+        btnPesanTiket.setBounds(descriptionScrollPane.getX() + descriptionScrollPane.getWidth() - 142, 
+                                descriptionScrollPane.getY() + descriptionScrollPane.getHeight() + 20, 
+                                142, 30);
+        btnPesanTiket.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnPesanTiket.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (currentUser != null && currentKonser != null) {
+                    System.out.println("Pesan Tiket: User ID " + currentUser.getUserId() + ", Konser ID " + currentKonser.getKonserId());
+                    // Navigate to DetailStageKonserInterface, passing necessary info
+                    // Example: new DetailStageKonserInterface(currentKonser, currentUser).setVisible(true);
+                    new DetailStageKonserInterface().setVisible(true); // Replace with actual data passing
+                    // dispose(); 
+                } else {
+                    JOptionPane.showMessageDialog(DetailKonserInterface.this, 
+                                                  "Data konser atau pengguna tidak lengkap untuk memesan.", 
+                                                  "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        contentPane.add(btnPesanTiket);
+        
+        JLabel lblKategoriSeatInfo = new JLabel("Kategori seat:");
+        lblKategoriSeatInfo.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblKategoriSeatInfo.setForeground(new Color(255, 255, 255));
+        lblKategoriSeatInfo.setBounds(descriptionScrollPane.getX(), btnPesanTiket.getY(), 98, 30);
+        contentPane.add(lblKategoriSeatInfo);
+        
+        JLabel lblKategoriSeatLink = new JLabel("info stage"); 
+        lblKategoriSeatLink.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblKategoriSeatLink.setForeground(new Color(100, 150, 255)); 
+        lblKategoriSeatLink.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblKategoriSeatLink.setBounds(lblKategoriSeatInfo.getX() + lblKategoriSeatInfo.getWidth() + 5, lblKategoriSeatInfo.getY(), 150, 30);
+        lblKategoriSeatLink.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                 new DetailStageKonserInterface().setVisible(true); // Replace with actual data passing
+            }
+        });
+        contentPane.add(lblKategoriSeatLink);
+    }
 }

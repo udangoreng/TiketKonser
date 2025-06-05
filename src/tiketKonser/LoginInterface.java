@@ -198,7 +198,7 @@ public class LoginInterface extends JFrame {
 		contentPane.add(lblNewLabel_11);
 		
 		// Buat ImageIcon dari file gambar
-		ImageIcon originalIcon = new ImageIcon("C:\\Users\\hasnatyam\\eclipse-workspace\\TiketKonser\\img\\StagePass-removebg-preview.png");
+		ImageIcon originalIcon = new ImageIcon("./img/StagePass-removebg-preview.png");
 
 		// Ambil Image dari ImageIcon
 		Image originalImage = originalIcon.getImage();

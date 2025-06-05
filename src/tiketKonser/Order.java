@@ -85,4 +85,8 @@ public class Order {
         }
         return userOrders;
     }
+    
+    public static ArrayList<Order> getAllOrder(){
+    	return orders;
+    }
 }
