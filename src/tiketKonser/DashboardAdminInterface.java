@@ -2,6 +2,7 @@ package tiketKonser;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,6 +14,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class DashboardAdminInterface extends JFrame {
 
@@ -41,7 +46,7 @@ public class DashboardAdminInterface extends JFrame {
 	 */
 	public DashboardAdminInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 838, 600);
+		setBounds(100, 100, 1043, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(26, 21, 24));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -143,5 +148,17 @@ public class DashboardAdminInterface extends JFrame {
 		lblNewLabel_2_2.setFont(new Font("Poppins", Font.BOLD, 18));
 		lblNewLabel_2_2.setBounds(333, 183, 227, 39);
 		contentPane.add(lblNewLabel_2_2);
+		
+		// Load gambar asli
+		ImageIcon originalIcon = new ImageIcon("./img/StagePass-removebg-preview.png");
+
+		// Resize gambar ke 180x183
+		Image resizedImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+
+		// Masukkan gambar hasil resize ke JLabel
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(resizedImage));
+		lblNewLabel_5.setBounds(882, 11, 125, 82);
+		contentPane.add(lblNewLabel_5);
 	}
 }

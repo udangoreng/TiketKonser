@@ -20,6 +20,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
+import java.awt.Image;
 
 public class DashboardInterface extends JFrame {
 
@@ -77,7 +78,7 @@ public class DashboardInterface extends JFrame {
      */
     private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 973, 596);
+		setBounds(100, 100, 1047, 596);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(26, 21, 24));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -159,5 +160,18 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_2.setFont(new Font("Poppins", Font.BOLD, 18));
 		lblNewLabel_2.setBounds(291, 45, 227, 39);
 		contentPane.add(lblNewLabel_2);
+		
+		// Load gambar asli
+		ImageIcon originalIcon = new ImageIcon("./img/StagePass-removebg-preview.png");
+
+		// Resize gambar ke ukuran yang sesuai label (250 x 156)
+		Image resizedImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+
+		// Buat JLabel dan set gambar hasil resize
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(resizedImage));
+		lblNewLabel.setBounds(876, 7, 147, 77);
+		contentPane.add(lblNewLabel);
+
 	}
 }
