@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,144 +14,188 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class DetailStageKonserInterface extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
+    private Konser currentKonser;
+    private User currentUser;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DetailStageKonserInterface frame = new DetailStageKonserInterface();
-					frame.setVisible(true);
-					frame.setSize(1024, 678);
-					} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    // UI components that need to be updated
+    private JLabel lblConcertTitle;
+    private JComboBox<Kategori> comboBoxKategori; // Store Kategori objects
+    private JTextArea textAreaKategoriDetails;
 
-	/**
-	 * Create the frame.
-	 */
-	public DetailStageKonserInterface() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1250, 743);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(26, 21, 24));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+    /**
+     * Launch the application for testing.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    // Get a sample user and concert for testing
+                    User testUser = User.searchUserById(1); // Assumes user with ID 1 exists
+                    Konser testKonser = Konser.searchKonserById(2); // Assumes Bruno Mars (ID 2) exists
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel();
-		ImageIcon originalIcon = new ImageIcon("./img/stage.jpg");
+                    if (testUser != null && testKonser != null) {
+                        DetailStageKonserInterface frame = new DetailStageKonserInterface(testKonser, testUser);
+                        frame.setVisible(true);
+                        frame.setSize(1024, 678);
+                        frame.setLocationRelativeTo(null);
+                    } else {
+                        System.err.println("Test User or Konser not found. Cannot run test.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-		// Resize gambar ke ukuran yang lebih kecil, misalnya 300x200
-		Image scaledImage = originalIcon.getImage().getScaledInstance(500, 400, Image.SCALE_SMOOTH);
-		ImageIcon resizedIcon = new ImageIcon(scaledImage);
+    /**
+     * Default constructor.
+     */
+    public DetailStageKonserInterface() {
+        initComponents();
+    }
 
-		lblNewLabel.setIcon(resizedIcon);
-		lblNewLabel.setBounds(23, 79, 506, 383); // Sesuaikan ukuran bounds dengan ukuran gambar baru
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Stage Konser Bruno Mars");
-		lblNewLabel_1.setFont(new Font("Poppins", Font.BOLD, 25));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBounds(190, 11, 339, 62);
-		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		ImageIcon icon = new ImageIcon("./img/detailStage.jpg");
+    /**
+     * Preferred constructor to create a dynamic interface.
+     * @param konser The Konser object to display details for.
+     * @param user The currently logged-in User.
+     */
+    public DetailStageKonserInterface(Konser konser, User user) {
+        this(); // Calls initComponents
+        this.currentKonser = konser;
+        this.currentUser = user;
+        populateData(); // Populate the UI with dynamic data
+    }
+
+    /**
+     * Fills the UI components with data from the currentKonser object.
+     */
+    private void populateData() {
+        if (currentKonser == null) {
+            JOptionPane.showMessageDialog(this, "Informasi konser tidak tersedia.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        lblConcertTitle.setText("Stage Konser " + currentKonser.getNamaKonser());
+
+        comboBoxKategori.removeAllItems();
+        comboBoxKategori.addItem(new Kategori("Pilih Kategori...", 0, 0));
+        for (Kategori kat : currentKonser.getKategoriList()) {
+            comboBoxKategori.addItem(kat);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Kategori Tiket Tersedia untuk\n")
+          .append(currentKonser.getNamaKonser()).append(":\n\n");
+        
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(localeID);
+
+        for (Kategori kat : currentKonser.getKategoriList()) {
+            String formattedPrice = currencyFormatter.format(kat.getHarga());
+            sb.append(String.format("- %-30s: %s\n", kat.getNamaKategori(), formattedPrice));
+        }
+        sb.append("\nCatatan:\n")
+          .append("- Harga belum termasuk pajak & biaya platform.\n")
+          .append("- Tata letak tempat duduk dapat berubah.\n");
+        
+        textAreaKategoriDetails.setText(sb.toString());
+        textAreaKategoriDetails.setCaretPosition(0);
+    }
+
+    /**
+     * Initializes all GUI components.
+     */
+    private void initComponents() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 1024, 678); // Set a standard size
+        contentPane = new JPanel();
+        contentPane.setBackground(new Color(26, 21, 24));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblStageImage = new JLabel();
+        ImageIcon originalIcon = new ImageIcon("./img/stage.jpg");
+        Image scaledImage = originalIcon.getImage().getScaledInstance(500, 400, Image.SCALE_SMOOTH);
+        lblStageImage.setIcon(new ImageIcon(scaledImage));
+        lblStageImage.setBounds(23, 79, 500, 400);
+        contentPane.add(lblStageImage);
+
+        lblConcertTitle = new JLabel("Stage Konser"); // Placeholder text
+        lblConcertTitle.setFont(new Font("Poppins", Font.BOLD, 25));
+        lblConcertTitle.setForeground(new Color(255, 255, 255));
+        lblConcertTitle.setBounds(23, 11, 500, 62);
+        contentPane.add(lblConcertTitle);
+
+        JLabel lblDetailStageImage = new JLabel("");
+        ImageIcon icon = new ImageIcon("./img/detailStage.jpg");
         Image scaledImage1 = icon.getImage().getScaledInstance(500, 100, Image.SCALE_SMOOTH);
-		lblNewLabel_2.setIcon(new ImageIcon(scaledImage1));
-		lblNewLabel_2.setBounds(23, 502, 508, 163);
-		contentPane.add(lblNewLabel_2);
-		
-		 // ComboBox metode pembayaran
-        JComboBox<String> comboBoxMetode = new JComboBox<>();
-        comboBoxMetode.setFont(new Font("Poppins", Font.PLAIN, 14));
-        comboBoxMetode.setBounds(598, 515, 250, 30);
-        comboBoxMetode.addItem("Kategori - Harga");
-        comboBoxMetode.addItem("Gold VIP Package - Rp 7.650.000");
-        comboBoxMetode.addItem("Cat 1 - Rp 6.000.000 ");
-        comboBoxMetode.addItem("Silver VIP Package - Rp 5.150.000");
-        comboBoxMetode.addItem("Festival A - Rp 3.500.000");
-        comboBoxMetode.addItem("Festival B - Rp 2.750.000 ");
-        comboBoxMetode.addItem("Cat 2 - Rp 3.500.000");
-        comboBoxMetode.addItem("Cat 3 - Rp 2.750.000");
-        comboBoxMetode.addItem("Cat 4 - Rp 1.750.000");
-        comboBoxMetode.addItem("Cat 5 - Rp 1.450.000");
-        comboBoxMetode.addItem("Cat 6 - Rp 1.250.000");
-        comboBoxMetode.addItem("Cat 7 - Rp 950.000 ");
-        contentPane.add(comboBoxMetode);
-        
-        JLabel lblNewLabel_3 = new JLabel("Pilih Kategori Seat");
-        lblNewLabel_3.setFont(new Font("Poppins", Font.PLAIN, 13));
-        lblNewLabel_3.setForeground(new Color(255, 255, 255));
-        lblNewLabel_3.setBounds(598, 502, 167, 14);
-        contentPane.add(lblNewLabel_3);
-        
-        JLabel lblNewLabel_4 = new JLabel("Deskripsi:");
-        lblNewLabel_4.setFont(new Font("Poppins", Font.PLAIN, 13));
-        lblNewLabel_4.setForeground(new Color(255, 255, 255));
-        lblNewLabel_4.setBounds(23, 484, 118, 14);
-        contentPane.add(lblNewLabel_4);
-        
-        JButton btnNewButton = new JButton("Pesan");
-        btnNewButton.setFont(new Font("Poppins", Font.BOLD, 13));
-        btnNewButton.setBounds(873, 515, 89, 30);
-        btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new MetodePembayaranInterface().setVisible(true);
-			}
-		});
-        contentPane.add(btnNewButton);
-        
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false); // Supaya tidak bisa diedit
-        textArea.setBackground(new Color(26, 21, 24)); // Warna latar belakang
-        textArea.setForeground(Color.WHITE); // Warna teks
-        textArea.setFont(new Font("Poppins", Font.PLAIN, 13)); // Font agar rapi dan sejajar
-        textArea.setBounds(588, 69, 387, 418);
+        lblDetailStageImage.setIcon(new ImageIcon(scaledImage1));
+        lblDetailStageImage.setBounds(23, 502, 500, 163);
+        contentPane.add(lblDetailStageImage);
 
-        // Isi teks deskripsi tiket
-        textArea.setText(
-            "⭐ VIP Packages:\n" +
-            "GOLD VIP PACKAGE   - IDR 7,650,000\n" +
-            "SILVER VIP PACKAGE - IDR 5,150,000\n\n" +
+        comboBoxKategori = new JComboBox<>();
+        comboBoxKategori.setFont(new Font("Poppins", Font.PLAIN, 14));
+        comboBoxKategori.setBounds(588, 515, 387, 30); // Wider combo box
+        contentPane.add(comboBoxKategori);
 
-            "🎤 Festival:\n" +
-            "FESTIVAL A         - IDR 3,500,000\n" +
-            "FESTIVAL B         - IDR 2,750,000\n\n" +
+        JLabel lblPilihKategori = new JLabel("Pilih Kategori Seat");
+        lblPilihKategori.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblPilihKategori.setForeground(new Color(255, 255, 255));
+        lblPilihKategori.setBounds(588, 495, 167, 14);
+        contentPane.add(lblPilihKategori);
 
-            "🪑 Seating:\n" +
-            "CAT 1              - IDR 6,000,000\n" +
-            "CAT 2              - IDR 3,500,000\n" +
-            "CAT 3              - IDR 2,750,000\n" +
-            "CAT 4              - IDR 1,750,000\n" +
-            "CAT 5              - IDR 1,450,000\n" +
-            "CAT 6              - IDR 1,250,000\n" +
-            "CAT 7              - IDR 950,000\n\n" +
+        JLabel lblDeskripsi = new JLabel("Deskripsi:");
+        lblDeskripsi.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblDeskripsi.setForeground(new Color(255, 255, 255));
+        lblDeskripsi.setBounds(23, 484, 118, 14);
+        contentPane.add(lblDeskripsi);
 
-            "Catatan:\n" +
-            "- Harga belum termasuk pajak & biaya layanan.\n" +
-            "- CAT 6 & 7 memiliki pandangan terbatas.\n" +
-            "- Tempat duduk bisa berubah menjelang acara.\n"
-        );
+        JButton btnPesan = new JButton("Pesan");
+        btnPesan.setFont(new Font("Poppins", Font.BOLD, 13));
+        btnPesan.setBounds(588, 560, 120, 35);
+        btnPesan.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Object selectedItem = comboBoxKategori.getSelectedItem();
+                if (selectedItem instanceof Kategori) {
+                    Kategori selectedKategori = (Kategori) selectedItem;
+                    if (selectedKategori.getHarga() <= 0) {
+                        JOptionPane.showMessageDialog(DetailStageKonserInterface.this, "Silakan pilih kategori tiket yang valid.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
 
-        contentPane.add(textArea);
+                    Order newOrder = Order.buatOrder(currentUser.getUserId(), currentKonser.getKonserId(), "Belum Bayar", selectedKategori.getHarga());
+                    
+                    new MetodePembayaranInterface().setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(DetailStageKonserInterface.this, "Pilihan kategori tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        contentPane.add(btnPesan);
 
-	}
+        textAreaKategoriDetails = new JTextArea();
+        textAreaKategoriDetails.setEditable(false);
+        textAreaKategoriDetails.setBackground(new Color(40, 35, 39));
+        textAreaKategoriDetails.setForeground(Color.WHITE);
+        textAreaKategoriDetails.setFont(new Font("Monospaced", Font.PLAIN, 13)); // Use monospaced for alignment
+        textAreaKategoriDetails.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JScrollPane scrollPane = new JScrollPane(textAreaKategoriDetails);
+        scrollPane.setBounds(588, 79, 400, 400);
+        scrollPane.setBorder(null);
+        contentPane.add(scrollPane);
+    }
 }

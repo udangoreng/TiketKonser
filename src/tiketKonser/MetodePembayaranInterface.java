@@ -12,8 +12,9 @@ public class MetodePembayaranInterface extends JFrame {
         EventQueue.invokeLater(() -> {
             try {
                 MetodePembayaranInterface frame = new MetodePembayaranInterface();
-                frame.setVisible(true);
                 frame.setSize(1024, 678);
+                frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -63,12 +64,10 @@ public class MetodePembayaranInterface extends JFrame {
         comboBoxBank.setVisible(false);
         contentPane.add(comboBoxBank);
 
-        // Action listener metode pembayaran
         comboBoxMetode.addActionListener(e -> {
             String selected = (String) comboBoxMetode.getSelectedItem();
 
             if (!selected.equals("Pilih Metode Pembayaran")) {
-                // Tampilkan pilihan bank
                 comboBoxBank.removeAllItems();
                 comboBoxBank.addItem("BCA");
                 comboBoxBank.addItem("BRI");
@@ -82,8 +81,7 @@ public class MetodePembayaranInterface extends JFrame {
                 comboBoxBank.setVisible(false);
             }
         });
-
-        // Tombol konfirmasi
+        
         JButton btnKonfirmasi = new JButton("Konfirmasi");
         btnKonfirmasi.setForeground(new Color(255, 255, 255));
         btnKonfirmasi.setFont(new Font("Poppins", Font.BOLD, 18));
@@ -134,13 +132,9 @@ public class MetodePembayaranInterface extends JFrame {
         lblNewLabel_3.setForeground(Color.WHITE);
         layeredPane.add(lblNewLabel_3, Integer.valueOf(2));
         
-        // Load gambar asli
         ImageIcon originalIcon = new ImageIcon("./img/brunoKonser.jpg");
-
-        // Resize gambar ke 309x356
         Image resizedImage = originalIcon.getImage().getScaledInstance(309, 356, Image.SCALE_SMOOTH);
 
-        // Masukkan gambar yang sudah di-resize ke JLabel
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(resizedImage));
         lblNewLabel.setBounds(61, 81, 309, 356);
@@ -153,7 +147,6 @@ public class MetodePembayaranInterface extends JFrame {
         lblNewLabel_6.setBounds(527, 176, 263, 25);
         contentPane.add(lblNewLabel_6);
 
-        // Aksi tombol konfirmasi
         btnKonfirmasi.addActionListener(e -> {
             String metode = (String) comboBoxMetode.getSelectedItem();
             String bank = comboBoxBank.isVisible() ? (String) comboBoxBank.getSelectedItem() : "-";

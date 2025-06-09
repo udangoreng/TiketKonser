@@ -22,6 +22,7 @@ public class RegisterInterface extends JFrame {
 	                RegisterInterface frame = new RegisterInterface();
 	                frame.setSize(1024, 678);
 	                frame.setVisible(true);
+	                frame.setLocationRelativeTo(null);
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }

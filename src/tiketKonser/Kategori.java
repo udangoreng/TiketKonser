@@ -22,5 +22,10 @@ public class Kategori {
     public double getHarga() {
         return harga;
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s - %s", this.nama, this.harga);
+    }
 
 }

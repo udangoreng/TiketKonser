@@ -107,7 +107,9 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
-		    	new DaftarKonserInterface(currentUser).setVisible(true);
+		    	DaftarKonserInterface konser = new DaftarKonserInterface(currentUser);
+                konser.setSize(1024, 678);
+                konser.setVisible(true);
 		    	dispose();
 		    }
 		});
@@ -172,5 +174,26 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(resizedImage));
 		lblNewLabel.setBounds(876, 7, 147, 77);
 		contentPane.add(lblNewLabel);
+		
+		ImageIcon disc1 = new ImageIcon("./img/poster1.jpg");
+        Image disc1img = disc1.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+        JLabel lbldisc1 = new JLabel("");
+        lbldisc1.setIcon(new ImageIcon(disc1img));
+        lbldisc1.setBounds(521, 102, 200, 300);
+        contentPane.add(lbldisc1);
+        
+        ImageIcon disc2 = new ImageIcon("./img/poster2.jpg");
+        Image disc2img = disc2.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+        JLabel lbldisc2 = new JLabel("");
+        lbldisc2.setIcon(new ImageIcon(disc2img));
+        lbldisc2.setBounds(779, 102, 200, 300);
+        contentPane.add(lbldisc2);
+        
+        ImageIcon disc3 = new ImageIcon("./img/poster3.jpg");
+        Image disc3img = disc3.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+        JLabel lbldisc3 = new JLabel("");
+        lbldisc3.setIcon(new ImageIcon(disc3img));
+        lbldisc3.setBounds(278, 102, 200, 300);
+        contentPane.add(lbldisc3);
 	}
 }

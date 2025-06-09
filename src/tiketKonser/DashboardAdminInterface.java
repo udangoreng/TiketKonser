@@ -38,8 +38,8 @@ public class DashboardAdminInterface extends JFrame {
                 try {
                     Admin testAdmin = new Admin(1, "Admin123", "Admin123", "admin01", "SuperAdmin");
                     DashboardAdminInterface frame = new DashboardAdminInterface(testAdmin);
-                    frame.setVisible(true);
                     frame.setSize(1024, 678);
+                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -209,7 +209,9 @@ public class DashboardAdminInterface extends JFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 dispose();
-                new ManageKonserInterface().setVisible(true);
+                ManageKonserInterface konser = new ManageKonserInterface(currentAdmin);
+                konser.setSize(1024, 678);
+                konser.setVisible(true);
             }
         });
         panelSidebar.add(lblNavKelolaKonser);
@@ -222,8 +224,10 @@ public class DashboardAdminInterface extends JFrame {
         lblNavKelolaOrder.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                dispose();
-                new ManageOrderInterface().setVisible(true);
+            	dispose();
+                ManageOrderInterface order = new ManageOrderInterface(currentAdmin);
+                order.setSize(1024, 678);
+                order.setVisible(true);
             }
         });
         panelSidebar.add(lblNavKelolaOrder);

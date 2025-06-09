@@ -28,10 +28,40 @@ public class Konser {
     }
     
     static {
-    	Konser.addKonser("Tulus", "2025-07-01", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus", "tulusKonser.jpg");
-        Konser.addKonser("Bruno Mars", "2025-07-15", "19:00", "Madya Stadium", "Konser Bruno Mars World Tour", "brunoKonser.jpg");
-        Konser.addKonser("Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir'", "hindiaKonser.jpg");
-        Konser.addKonser("Taylor Swift", "2025-09-10", "20:00", "GBK Stadium", "The Eras Tour - Jakarta", "taylorKonser.jpg");
+        Konser tulus = new Konser(nextId++, "Tulus", "2025-07-01", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus, menampilkan lagu-lagu hits dari album terbarunya.", "tulusKonser.jpg");
+        ArrayList<Kategori> kategoriList1 = new ArrayList<>();
+        kategoriList1.add(new Kategori("Festival", 550000, 2000));
+        kategoriList1.add(new Kategori("CAT 1 (Numbered Seating)", 750000, 1000));
+        kategoriList1.add(new Kategori("CAT 2 (Numbered Seating)", 450000, 1500));
+        tulus.setKategori(kategoriList1);
+        konserAll.add(tulus);
+        
+        Konser bruno = new Konser(nextId++, "Bruno Mars", "2025-09-13", "19:00", "Jakarta International Stadium", "Live in Jakarta, bagian dari tur dunia 24K Magic yang telah memenangkan berbagai penghargaan.", "brunoKonser.jpg");
+        ArrayList<Kategori> kategoriList2 = new ArrayList<>();
+        kategoriList2.add(new Kategori("Gold VIP Package", 7650000, 500));
+        kategoriList2.add(new Kategori("CAT 1", 6000000, 800));
+        kategoriList2.add(new Kategori("Festival A (Standing)", 3500000, 3000));
+        kategoriList2.add(new Kategori("CAT 4", 1750000, 2000));
+        kategoriList2.add(new Kategori("CAT 7 (Restricted View)", 950000, 1000));
+        bruno.setKategori(kategoriList2);
+        konserAll.add(bruno);
+
+        Konser hindia = new Konser(nextId++, "Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir', sebuah perayaan musik dan cerita.", "hindiaKonser.jpg");
+        ArrayList<Kategori> kategoriList3 = new ArrayList<>();
+        kategoriList3.add(new Kategori("Festival (Standing)", 480000, 1500));
+        kategoriList3.add(new Kategori("Tribun A", 320000, 1000));
+        kategoriList3.add(new Kategori("Tribun B", 320000, 1000));
+        hindia.setKategori(kategoriList3);
+        konserAll.add(hindia);
+        
+        Konser taylor = new Konser(nextId++, "Taylor Swift", "2025-11-20", "20:00", "GBK Stadium", "The Eras Tour - Jakarta. Sebuah perjalanan musikal melewati semua era karirnya.", "taylorKonser.jpg");
+        ArrayList<Kategori> kategoriList4 = new ArrayList<>();
+        kategoriList4.add(new Kategori("CAT 1 (Karma is My Boyfriend)", 12500000, 200));
+        kategoriList4.add(new Kategori("CAT 2 (It's a Love Story)", 8000000, 1000));
+        kategoriList4.add(new Kategori("CAT 3 (You Belong With Me)", 6500000, 1500));
+        kategoriList4.add(new Kategori("CAT 5 (Restricted View)", 4800000, 2500));
+        taylor.setKategori(kategoriList4);
+        konserAll.add(taylor);  
     }
     
     public static void addKonser(String nama, String tanggal, String waktu, String lokasi, String deskripsi, String gambar) {
@@ -49,6 +79,15 @@ public class Konser {
 //            System.out.println("ID: " + konser.getKonserId() + ", Nama: " + konser.getNamaKonser());
 //        }
         return konserAll;
+    }
+    
+    public static Konser searchKonserById(int id) {
+        for (Konser konser : konserAll) {
+            if (konser.getKonserId() == id) {
+                return konser;
+            }
+        }
+        return null;
     }
 
     public void tampilkanAllKonser() {

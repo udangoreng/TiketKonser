@@ -18,6 +18,8 @@ public class User {
 	}
 	
 	static {
+		register("Alexa", "alx@gmail", "Alex12");
+		register("Nikola", "nkl@gmail", "nikolya2");
 		addAdmin("Admin1", "admin1@admin", "admin123", "SuperAdmin");
 		addAdmin("Admin2", "admin2@admin", "admin123", "Admin");
 	}
@@ -54,8 +56,16 @@ public class User {
 		System.out.println("Logout");
 	}
 	
-	//Setter Getter
+	public static User searchUserById(int id) {
+        for (User user : users) {
+            if (user.getUserId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
 	
+	//Setter Getter
 	public void setUserId(int id) {
     	this.userId = id;
     }

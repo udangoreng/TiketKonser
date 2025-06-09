@@ -296,10 +296,8 @@ public class DetailKonserInterface extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (currentUser != null && currentKonser != null) {
                     System.out.println("Pesan Tiket: User ID " + currentUser.getUserId() + ", Konser ID " + currentKonser.getKonserId());
-                    // Navigate to DetailStageKonserInterface, passing necessary info
-                    // Example: new DetailStageKonserInterface(currentKonser, currentUser).setVisible(true);
-                    new DetailStageKonserInterface().setVisible(true); // Replace with actual data passing
-                    // dispose(); 
+                    new DetailStageKonserInterface(currentKonser, currentUser).setVisible(true);
+                    dispose(); 
                 } else {
                     JOptionPane.showMessageDialog(DetailKonserInterface.this, 
                                                   "Data konser atau pengguna tidak lengkap untuk memesan.", 
@@ -323,7 +321,7 @@ public class DetailKonserInterface extends JFrame {
         lblKategoriSeatLink.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                 new DetailStageKonserInterface().setVisible(true); // Replace with actual data passing
+                 new DetailStageKonserInterface().setVisible(true);
             }
         });
         contentPane.add(lblKategoriSeatLink);
