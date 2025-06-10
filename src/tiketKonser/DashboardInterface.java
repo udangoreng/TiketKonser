@@ -60,6 +60,7 @@ public class DashboardInterface extends JFrame {
      * @param user The currently logged-in User object.
      */
     public DashboardInterface(User user) {
+        this();
         this.currentUser = user;
 
         if (this.currentUser != null) {

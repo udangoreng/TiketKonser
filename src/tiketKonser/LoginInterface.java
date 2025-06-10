@@ -116,7 +116,9 @@ public class LoginInterface extends JFrame {
 				                
 				            } else {
 				                JOptionPane.showMessageDialog(null, "Login User Berhasil! Selamat datang, " + user.getNama());
-				                new DashboardInterface(user).setVisible(true);
+				                DashboardInterface dashboard= new DashboardInterface(user);
+				            	dashboard.setSize(1024, 678);
+				            	dashboard.setVisible(true);
 				            }
 				            dispose();
 				        } else {
