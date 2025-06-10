@@ -40,8 +40,8 @@ public class LoginInterface extends JFrame {
 			public void run() {
 				try {
 					LoginInterface frame = new LoginInterface();
-					frame.setVisible(true);
 					frame.setSize(1024, 678);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -110,7 +110,10 @@ public class LoginInterface extends JFrame {
 				            if (user instanceof Admin) {
 				                Admin admin = (Admin) user;
 				                JOptionPane.showMessageDialog(null, "Login Admin Berhasil! Selamat datang, " + admin.getNama());
-				                new DashboardAdminInterface().setVisible(true);
+				                DashboardAdminInterface adminIn = new DashboardAdminInterface();
+				                adminIn.setSize(1024, 678);
+				                adminIn.setVisible(true);
+				                
 				            } else {
 				                JOptionPane.showMessageDialog(null, "Login User Berhasil! Selamat datang, " + user.getNama());
 				                new DashboardInterface(user).setVisible(true);

@@ -199,7 +199,10 @@ public class DaftarKonserInterface extends JFrame {
                 detailButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
                 detailButton.addActionListener(e -> {
                     System.out.println("Detail untuk: " + konser.getNamaKonser());
-                    new DetailKonserInterface(konser, currentUser).setVisible(true);
+                    
+                    DetailKonserInterface detail = new DetailKonserInterface(konser, currentUser);
+                    detail.setSize(1024, 678);
+                    detail.setVisible(true);
                     dispose();
                 });
                 itemPanel.add(detailButton);
