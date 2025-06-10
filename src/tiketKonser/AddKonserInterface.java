@@ -167,8 +167,8 @@ public class AddKonserInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nama = textField.getText();
-	                String tanggal = textField_1.getText();
-	                String waktu = textField_2.getText();
+	                String tanggal = textField_2.getText();
+	                String waktu = textField_1.getText();
 	                String lokasi = textArea_1.getText();
 	                String deskripsi = textArea.getText();
 	                String filepath = textField_3.getText();
