@@ -56,8 +56,8 @@ public class DetailKonserInterface extends JFrame {
                     }
                     
                     DetailKonserInterface frame = new DetailKonserInterface(konserToDisplay, testUser);
-                    frame.setVisible(true);
                     frame.setSize(1024, 678);
+                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
 
                 } catch (Exception e) {
@@ -296,7 +296,9 @@ public class DetailKonserInterface extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (currentUser != null && currentKonser != null) {
                     System.out.println("Pesan Tiket: User ID " + currentUser.getUserId() + ", Konser ID " + currentKonser.getKonserId());
-                    new DetailStageKonserInterface(currentKonser, currentUser).setVisible(true);
+                    DetailStageKonserInterface stage = new DetailStageKonserInterface(currentKonser, currentUser);
+                    stage.setSize(1024, 678);
+                    stage.setVisible(true);
                     dispose(); 
                 } else {
                     JOptionPane.showMessageDialog(DetailKonserInterface.this, 
