@@ -44,10 +44,10 @@ public class Order {
         }
     }
 
-    // Method untuk generate Virtual Account (dummy)
-    public void generateVA() {
-        String vaNumber = "VA" + orderId + konserId + userId;
+    public String generateVA() {
+        String vaNumber = "VA" + orderId + String.format("%02d", konserId) + String.format("%02d", userId);
         System.out.println("Virtual Account untuk Order ID " + orderId + ": " + vaNumber);
+        return vaNumber;
     }
 
     // Getter dan Setter (opsional)
@@ -81,6 +81,14 @@ public class Order {
 
     public void setStatusBayar(String statusBayar) {
         this.statusBayar = statusBayar;
+    }
+    
+    public String getKategoriTiket() {
+        return kategoriTiket;
+    }
+
+    public void setKategoriTiket(String kategori) {
+        this.kategoriTiket = kategori;
     }
     
     public double getTotal() {

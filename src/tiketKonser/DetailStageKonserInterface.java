@@ -74,7 +74,7 @@ public class DetailStageKonserInterface extends JFrame {
         this(); // Calls initComponents
         this.currentKonser = konser;
         this.currentUser = user;
-        populateData(); // Populate the UI with dynamic data
+        populateData();
     }
 
     /**
@@ -177,7 +177,7 @@ public class DetailStageKonserInterface extends JFrame {
 
                     Order newOrder = Order.buatOrder(currentUser.getUserId(), currentKonser.getKonserId(), "Belum Bayar", selectedKategori.getHarga());
                     
-                    new MetodePembayaranInterface().setVisible(true);
+                    new MetodePembayaranInterface(newOrder, currentUser).setVisible(true);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(DetailStageKonserInterface.this, "Pilihan kategori tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);

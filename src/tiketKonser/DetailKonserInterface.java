@@ -185,9 +185,12 @@ public class DetailKonserInterface extends JFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (currentUser != null) {
-                    new DashboardInterface(currentUser).setVisible(true);
+        		    	DashboardInterface dashboard= new DashboardInterface(currentUser);
+        		    	dashboard.setSize(1024, 678);
+        		    	dashboard.setVisible(true);
+        		    	dispose();
                 } else {
-                    new DashboardInterface().setVisible(true); // Or navigate to login
+                    new DashboardInterface().setVisible(true);
                 }
                 dispose();
             }
@@ -205,7 +208,7 @@ public class DetailKonserInterface extends JFrame {
                  if (currentUser != null) {
                     new DaftarKonserInterface(currentUser).setVisible(true);
                 } else {
-                    new DaftarKonserInterface().setVisible(true); // Or navigate to login
+                    new DaftarKonserInterface().setVisible(true);
                 }
                 dispose();
             }
@@ -218,13 +221,13 @@ public class DetailKonserInterface extends JFrame {
         layeredPane.add(lblNavTiketSaya, Integer.valueOf(1));
         lblNavTiketSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lblNavTiketSaya.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // Assuming TiketSayaInterface might also need currentUser
-                // new TiketSayaInterface(currentUser).setVisible(true); 
-                new TiketSayaInterface().setVisible(true);
-                dispose();
-            }
+        	@Override
+		    public void mousePressed(MouseEvent e) {
+		    	TiketSayaInterface tiket = new TiketSayaInterface(currentUser);
+		    	tiket.setSize(1024, 678);
+		    	tiket.setVisible(true);
+		    	dispose();
+		    }
         });
         
         JLabel lblNavProfilSaya = new JLabel("Profil Saya");

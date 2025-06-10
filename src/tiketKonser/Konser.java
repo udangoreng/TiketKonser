@@ -28,7 +28,7 @@ public class Konser {
     }
     
     static {
-        Konser tulus = new Konser(nextId++, "Tulus", "2025-07-01", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus, menampilkan lagu-lagu hits dari album terbarunya.", "tulusKonser.jpg");
+        Konser tulus = new Konser(nextId++, "Tulus", "01-07-2025", "20:00", "Stadium JIS", "Konser Tur Manusia oleh Tulus, menampilkan lagu-lagu hits dari album terbarunya.", "tulusKonser.jpg");
         ArrayList<Kategori> kategoriList1 = new ArrayList<>();
         kategoriList1.add(new Kategori("Festival", 550000, 2000));
         kategoriList1.add(new Kategori("CAT 1 (Numbered Seating)", 750000, 1000));
@@ -36,7 +36,7 @@ public class Konser {
         tulus.setKategori(kategoriList1);
         konserAll.add(tulus);
         
-        Konser bruno = new Konser(nextId++, "Bruno Mars", "2025-09-13", "19:00", "Jakarta International Stadium", "Live in Jakarta, bagian dari tur dunia 24K Magic yang telah memenangkan berbagai penghargaan.", "brunoKonser.jpg");
+        Konser bruno = new Konser(nextId++, "Bruno Mars", "13-09-2025", "19:00", "Jakarta International Stadium", "Live in Jakarta, bagian dari tur dunia 24K Magic yang telah memenangkan berbagai penghargaan.", "brunoKonser.jpg");
         ArrayList<Kategori> kategoriList2 = new ArrayList<>();
         kategoriList2.add(new Kategori("Gold VIP Package", 7650000, 500));
         kategoriList2.add(new Kategori("CAT 1", 6000000, 800));
@@ -46,7 +46,7 @@ public class Konser {
         bruno.setKategori(kategoriList2);
         konserAll.add(bruno);
 
-        Konser hindia = new Konser(nextId++, "Hindia", "2025-08-01", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir', sebuah perayaan musik dan cerita.", "hindiaKonser.jpg");
+        Konser hindia = new Konser(nextId++, "Hindia", "01-08-2025", "19:30", "Basket Hall Senayan", "Tur Album 'Lagipula Hidup Akan Berakhir', sebuah perayaan musik dan cerita.", "hindiaKonser.jpg");
         ArrayList<Kategori> kategoriList3 = new ArrayList<>();
         kategoriList3.add(new Kategori("Festival (Standing)", 480000, 1500));
         kategoriList3.add(new Kategori("Tribun A", 320000, 1000));
@@ -54,7 +54,7 @@ public class Konser {
         hindia.setKategori(kategoriList3);
         konserAll.add(hindia);
         
-        Konser taylor = new Konser(nextId++, "Taylor Swift", "2025-11-20", "20:00", "GBK Stadium", "The Eras Tour - Jakarta. Sebuah perjalanan musikal melewati semua era karirnya.", "taylorKonser.jpg");
+        Konser taylor = new Konser(nextId++, "Taylor Swift", "20-11-2025", "20:00", "GBK Stadium", "The Eras Tour - Jakarta. Sebuah perjalanan musikal melewati semua era karirnya.", "taylorKonser.jpg");
         ArrayList<Kategori> kategoriList4 = new ArrayList<>();
         kategoriList4.add(new Kategori("CAT 1 (Karma is My Boyfriend)", 12500000, 200));
         kategoriList4.add(new Kategori("CAT 2 (It's a Love Story)", 8000000, 1000));

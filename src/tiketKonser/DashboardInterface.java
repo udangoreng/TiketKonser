@@ -51,8 +51,7 @@ public class DashboardInterface extends JFrame {
      * Called when no user is passed (e.g., direct execution via main).
      */
     public DashboardInterface() {
-        initComponents(); // Call a common method to initialize GUI components
-        // lblHiUsername will retain its default text "Hi, Username" set in initComponents
+        initComponents(); 
     }
 
     /**
@@ -61,13 +60,11 @@ public class DashboardInterface extends JFrame {
      * @param user The currently logged-in User object.
      */
     public DashboardInterface(User user) {
-        this(); // Calls the default constructor to set up the GUI (initComponents)
         this.currentUser = user;
 
         if (this.currentUser != null) {
             lblHiUsername.setText("Hi, " + this.currentUser.getNama());
         } else {
-            // Fallback if user is null, though ideally LoginInterface prevents this
             lblHiUsername.setText("Hi, Guest");
         }
     }
@@ -123,7 +120,9 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3_1.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mousePressed(MouseEvent e) {
-		    	new TiketSayaInterface().setVisible(true);
+		    	TiketSayaInterface tiket = new TiketSayaInterface(currentUser);
+		    	tiket.setSize(1024, 678);
+		    	tiket.setVisible(true);
 		    	dispose();
 		    }
 		});
@@ -163,13 +162,9 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_2.setBounds(291, 45, 227, 39);
 		contentPane.add(lblNewLabel_2);
 		
-		// Load gambar asli
 		ImageIcon originalIcon = new ImageIcon("./img/StagePass-removebg-preview.png");
-
-		// Resize gambar ke ukuran yang sesuai label (250 x 156)
 		Image resizedImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-		// Buat JLabel dan set gambar hasil resize
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(resizedImage));
 		lblNewLabel.setBounds(876, 7, 147, 77);
