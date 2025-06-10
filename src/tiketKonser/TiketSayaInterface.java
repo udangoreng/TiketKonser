@@ -73,7 +73,7 @@ public class TiketSayaInterface extends JFrame {
     }
     
     private boolean isFutureDate(String dateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setLenient(false);
         try {
             Date concertDate = sdf.parse(dateString);
@@ -114,10 +114,10 @@ public class TiketSayaInterface extends JFrame {
             Konser konser = Konser.searchKonserById(order.getKonserId());
             if (konser == null) continue;
             
-            if (order.getStatusBayar().equalsIgnoreCase("Sudah Bayar") && isFutureDate(konser.getTanggalKonser())) {
+            if (isFutureDate(konser.getTanggalKonser())) {
                 JLabel ticketImageLabel = createTicketImageLabel(konser, currentY);
                 ticketContainerPanel.add(ticketImageLabel);
-                currentY += ticketImageLabel.getHeight() + 20; // Move Y for the next ticket
+                currentY += ticketImageLabel.getHeight() + 20;
                 hasActiveTickets = true;
             }
         }
@@ -131,7 +131,7 @@ public class TiketSayaInterface extends JFrame {
         }
         
         // --- HISTORY TICKETS ---
-        currentY += 20; // Extra space before history section
+        currentY += 20;
         JLabel lblHistoryTitle = new JLabel("History");
         lblHistoryTitle.setForeground(Color.WHITE);
         lblHistoryTitle.setFont(new Font("Poppins", Font.BOLD, 28));
@@ -144,7 +144,7 @@ public class TiketSayaInterface extends JFrame {
              Konser konser = Konser.searchKonserById(order.getKonserId());
              if (konser == null) continue;
              
-             if (!order.getStatusBayar().equalsIgnoreCase("Sudah Bayar") || !isFutureDate(konser.getTanggalKonser())) {
+             if (!isFutureDate(konser.getTanggalKonser())) {
                  JLabel ticketImageLabel = createTicketImageLabel(konser, currentY);
                  ticketContainerPanel.add(ticketImageLabel);
                  currentY += ticketImageLabel.getHeight() + 20;
