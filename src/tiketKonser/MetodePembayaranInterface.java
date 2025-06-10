@@ -151,6 +151,7 @@ public class MetodePembayaranInterface extends JFrame {
             String metode = (String) comboBoxMetode.getSelectedItem();
             String bank = comboBoxBank.isVisible() ? (String) comboBoxBank.getSelectedItem() : "-";
             JOptionPane.showMessageDialog(this, "Metode: " + metode + "\nBank: " + bank);
+            
         });
     }
 }

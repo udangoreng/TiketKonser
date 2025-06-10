@@ -50,7 +50,6 @@ public class DaftarKonserInterface extends JFrame {
         if (this.currentUser != null) {
             lblHiUsername.setText("Hi, " + this.currentUser.getNama());
         } else {
-            // Fallback if user is null, though ideally LoginInterface prevents this
             lblHiUsername.setText("Hi, Guest");
         }
     }
@@ -124,7 +123,6 @@ public class DaftarKonserInterface extends JFrame {
         lblLogout.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                // Clear current user session if you have one (e.g. User.currentUser = null;)
                 new LoginInterface().setVisible(true);
                 dispose();
             }
