@@ -323,7 +323,17 @@ public class DetailKonserInterface extends JFrame {
         lblKategoriSeatLink.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                 new DetailStageKonserInterface().setVisible(true);
+            	if (currentUser != null && currentKonser != null) {
+                    System.out.println("Pesan Tiket: User ID " + currentUser.getUserId() + ", Konser ID " + currentKonser.getKonserId());
+                    DetailStageKonserInterface stage = new DetailStageKonserInterface(currentKonser, currentUser);
+                    stage.setSize(1024, 678);
+                    stage.setVisible(true);
+                    dispose(); 
+                } else {
+                    JOptionPane.showMessageDialog(DetailKonserInterface.this, 
+                                                  "Data konser atau pengguna tidak lengkap untuk memesan.", 
+                                                  "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         contentPane.add(lblKategoriSeatLink);
