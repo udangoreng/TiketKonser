@@ -135,9 +135,11 @@ public class DashboardInterface extends JFrame {
 		lblNewLabel_3_2.setBounds(36, 254, 168, 40);
 		lblNewLabel_3_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_3_2.addMouseListener(new MouseAdapter() {
-		    @Override
+			@Override
 		    public void mousePressed(MouseEvent e) {
-		    	new ProfilInterface().setVisible(true);
+		    	ProfilInterface profil = new ProfilInterface(currentUser);
+		    	profil.setSize(1024, 678);
+		    	profil.setVisible(true);
 		    	dispose();
 		    }
 		});

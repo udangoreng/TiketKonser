@@ -93,11 +93,13 @@ public class DaftarKonserInterface extends JFrame {
         lblTiketSaya.setBounds(24, 191, 131, 30);
         lblTiketSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lblTiketSaya.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                new TiketSayaInterface(/* pass currentUser if needed */).setVisible(true);
-                dispose();
-            }
+        	@Override
+		    public void mousePressed(MouseEvent e) {
+		    	TiketSayaInterface tiket = new TiketSayaInterface(currentUser);
+		    	tiket.setSize(1024, 678);
+		    	tiket.setVisible(true);
+		    	dispose();
+		    }
         });
         panelSidebar.add(lblTiketSaya);
 
@@ -107,11 +109,13 @@ public class DaftarKonserInterface extends JFrame {
         lblProfilSaya.setBounds(24, 232, 131, 30);
         lblProfilSaya.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lblProfilSaya.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                new ProfilInterface(/* pass currentUser if needed */).setVisible(true);
-                dispose();
-            }
+        	@Override
+		    public void mousePressed(MouseEvent e) {
+		    	ProfilInterface profil = new ProfilInterface(currentUser);
+		    	profil.setSize(1024, 678);
+		    	profil.setVisible(true);
+		    	dispose();
+		    }
         });
         panelSidebar.add(lblProfilSaya);
 
